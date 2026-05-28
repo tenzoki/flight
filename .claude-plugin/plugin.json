@@ -1,6 +1,6 @@
 {
   "name": "flight",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Lightweight AI work companion for non-technical users. One general-purpose agent for analyzing documents, discussing topics, and producing precise, well-styled written outputs. Includes session-close compaction, open-task tracking via CLAUDE.md, and a built-in professional-voice style guide. /flight:help inside Claude Code for self-explainer.",
   "author": {
     "name": "Kai / qantr GmbH"

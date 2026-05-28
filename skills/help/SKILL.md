@@ -1,7 +1,7 @@
 ---
-name: help
 description: Explain what flight is, how to use it day-to-day, and what each slash command does. Walks the user through the workflow in plain English. Optional topic argument routes the answer (workflow / commands / files / language / style / tasks).
-allowed-tools: Read
+argument-hint: [workflow | commands | files | language | style | tasks]
+allowed-tools: [Read]
 ---
 
 # /flight:help — what is flight and how do I use it?

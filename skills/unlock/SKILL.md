@@ -1,7 +1,6 @@
 ---
-name: unlock
 description: Write a permissive .claude/settings.local.json so future Claude Code sessions in this project run without per-tool approval prompts. Useful for non-technical users who do not want to approve every Bash, Write, and Edit operation. Takes effect on next session — Claude Code reads permission settings only at startup.
-allowed-tools: Read, Write, Bash
+allowed-tools: [Read, Write, Bash]
 ---
 
 # /flight:unlock — skip permission prompts in this project

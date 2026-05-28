@@ -1,7 +1,6 @@
 ---
-name: land
 description: Close the current flight session. Writes a session summary to flight-workbench/history/<session>-session.md, then compacts CLAUDE.md via a three-pass edit (add new learnings, update stale memos, prune obsolete content). Any open tasks generated during the session that were not resolved are carried forward into CLAUDE.md's Open tasks list. Run this when you are done for the day or session — it leaves the project in a clean state for next time.
-allowed-tools: Read, Write, Edit, Bash, AskUserQuestion
+allowed-tools: [Read, Write, Edit, Bash, AskUserQuestion]
 ---
 
 # /flight:land — close the session

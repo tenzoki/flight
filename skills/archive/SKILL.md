@@ -1,7 +1,7 @@
 ---
-name: archive
 description: Archive completed or aged workbench files into flight-workbench/archive/<YYMMDD-HH-MM>-<slug>/. Supports natural-language description ("archive everything older than April", "archive the closed decisions") or pre-defined tiers (recent / mid / deep). Surveys, proposes, asks for confirmation, then moves. Use when the workbench has grown crowded and you want to thin it out without deleting anything.
-allowed-tools: Read, Write, Bash, Edit, AskUserQuestion
+argument-hint: [tier or natural-language description]
+allowed-tools: [Read, Write, Bash, Edit, AskUserQuestion]
 ---
 
 # /flight:archive — thin out the workbench

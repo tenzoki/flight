@@ -1,7 +1,6 @@
 ---
-name: start
 description: Initialize the flight workbench in the current project directory. Creates ./flight-workbench/ with subfolders (history, decisions, memos, archive, stilwerk), copies the stylometric profiles, initializes CLAUDE.md (the user's memo and instruction file) from the template if missing, then reads CLAUDE.md and reports any open tasks to the user. Run once per project, or re-run any time to refresh the stilwerk profiles and verify the layout. Idempotent — never overwrites user content.
-allowed-tools: Read, Write, Bash, Edit, AskUserQuestion
+allowed-tools: [Read, Write, Bash, Edit, AskUserQuestion]
 ---
 
 # /flight:start — initialize a flight project

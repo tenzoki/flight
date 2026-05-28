@@ -1,7 +1,6 @@
 ---
-name: cleanup
 description: Clean up CLAUDE.md's open-task list. Removes tasks the user has marked closed, and for tasks that look obviously outdated or redundant, asks the user whether to archive, delete, or keep each. Strippings go to flight-workbench/archive/<timestamp>-cleanup-strippings.md so nothing is lost. Run when the open-task list has grown long or stale; complements /flight:land (which is broader: session close + full CLAUDE.md compaction).
-allowed-tools: Read, Write, Edit, Bash, AskUserQuestion
+allowed-tools: [Read, Write, Edit, Bash, AskUserQuestion]
 ---
 
 # /flight:cleanup — strip closed and stale tasks from CLAUDE.md

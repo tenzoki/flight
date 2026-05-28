@@ -1,7 +1,7 @@
 ---
-name: memo
 description: Capture an open task or a longer memo. Open tasks go into CLAUDE.md (the user's memo file) — that is the primary use, far more important than fusion's memo. Longer free-form memos can also be filed under flight-workbench/memos/. Use whenever the user says "remember this", "add a task", "note that", or hands you something to do later. Takes optional text as argument; if no text is given, ask the user what to record.
-allowed-tools: Read, Write, Edit, Bash, AskUserQuestion
+argument-hint: [task text or longer memo]
+allowed-tools: [Read, Write, Edit, Bash, AskUserQuestion]
 ---
 
 # /flight:memo — record an open task or a memo
