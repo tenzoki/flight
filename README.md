@@ -2,6 +2,8 @@
 
 A lightweight AI work companion plugin for [Claude Code](https://docs.anthropic.com/en/docs/claude-code/overview). Designed for non-technical users who want a calm, capable assistant for analyzing documents, discussing topics, and producing precise written outputs — without the complexity of multi-agent orchestration.
 
+The plugin is named **flight**; its single AI agent is named **pilot** (dispatch with `claude --agent flight:pilot`).
+
 flight is a flightweight cousin of [fusion](https://github.com/tenzoki/fusion). Same family, much simpler.
 
 ## What flight does
