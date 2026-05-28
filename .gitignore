@@ -1,0 +1,10 @@
+# flight-workbench/ is a per-project runtime artifact created in user projects,
+# not in this plugin source tree. If it ever appears here (e.g. during dev
+# testing), it should not be committed.
+flight-workbench/
+
+# IDE / OS noise
+.DS_Store
+.idea/
+.vscode/
+*.swp

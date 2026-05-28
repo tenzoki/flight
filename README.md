@@ -1,0 +1,76 @@
+# flight
+
+A lightweight AI work companion plugin for [Claude Code](https://docs.anthropic.com/en/docs/claude-code/overview). Designed for non-technical users who want a calm, capable assistant for analyzing documents, discussing topics, and producing precise written outputs — without the complexity of multi-agent orchestration.
+
+flight is a flightweight cousin of [fusion](https://github.com/tenzoki/fusion). Same family, much simpler.
+
+## What flight does
+
+- **Analyzes documents and discusses topics.** Bring a PDF, a spec, a transcript — talk it through, get a summary, draft a response.
+- **Produces well-styled written outputs.** Markdown by default; also `.pptx`, `.xlsx`, `.docx`, etc. on request. Prose generation applies a professional-voice stylometric profile so the output reads cleanly.
+- **Tracks open tasks** in your project's `CLAUDE.md` — they show up automatically every session.
+- **Files decisions** when you ask (or when a discussion surfaces an insight worth keeping).
+- **Logs every session** to `flight-workbench/history/`, so the conversation is durable even if you do not use git.
+
+## What flight is NOT
+
+- Not a code-writing assistant primarily (though it can write code on request).
+- Not [fusion](https://github.com/tenzoki/fusion). No orchestrator, no Turn loops, no Coherence checks, no compliance guard, no sub-agent dispatch.
+- Not silent. Flight asks before destructive operations.
+
+## Quick start
+
+```bash
+# In Claude Code, add the marketplace and install flight
+/plugin marketplace add tenzoki/claude-plugins
+/plugin install flight@tenzoki-plugins
+
+# In any project folder where you want to work
+/flight:start
+```
+
+That's it. `/flight:start` creates a `flight-workbench/` folder, copies the style profiles, initializes `CLAUDE.md` (if missing), and tells you what's on your plate.
+
+After that, just talk. When done, `/flight:land` closes the session cleanly.
+
+## The seven slash commands
+
+| Command | What it does |
+|---|---|
+| `/flight:start` | Set up or refresh the workbench, read CLAUDE.md, show open tasks |
+| `/flight:land` | Close the session — summary to history, compact CLAUDE.md, carry forward unresolved tasks |
+| `/flight:memo <text>` | Capture an open task (or a longer memo) |
+| `/flight:cleanup` | Strip closed/stale tasks from CLAUDE.md, archive the strippings |
+| `/flight:archive` | Move old workbench files into a timestamped archive bundle |
+| `/flight:unlock` | Write a permissive permissions file so future sessions skip approval prompts |
+| `/flight:help` | Explainer. Optional topic: workflow, commands, files, language, style, tasks |
+
+## What gets created in your project
+
+```
+your-project/
+├── CLAUDE.md                        ← your memo file + flight conventions
+├── .claude/settings.local.json      ← optional, written by /flight:unlock
+└── flight-workbench/
+    ├── history/                     ← one file per session
+    ├── decisions/                   ← important choices you tracked
+    ├── memos/                       ← longer notes filed via /flight:memo
+    ├── archive/                     ← /flight:cleanup and /flight:archive move here
+    ├── stilwerk/                    ← professional-voice style profiles
+    └── .flight-setup                ← setup marker (when/where)
+```
+
+Every file flight creates carries a date-time prefix: `<YYMMDD-HH-MM>-<name>.<ext>`. Easy to sort and find.
+
+## Language
+
+Default is English. If you work in another language, flight asks once whether to switch the project's language permanently (recorded in `CLAUDE.md`). flight ships professional-voice style profiles for English and German; for other languages, it reads the English profile and applies the same intent in the target language.
+
+## Requirements
+
+- [Claude Code](https://docs.anthropic.com/en/docs/claude-code/overview) v2.0.12 or higher
+- That's it. No git, no Node, no Python required for the core skills. (Producing `.pptx` / `.xlsx` etc. uses Python libraries on request, but you do not need to install them upfront.)
+
+## License
+
+MIT. See [LICENSE](LICENSE).
