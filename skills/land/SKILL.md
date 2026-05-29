@@ -92,7 +92,7 @@ Then update the `**Status:**` line at the top of the file from `active` to `comp
 In CLAUDE.md, locate the `## Recent sessions` section. Prepend a one-line entry:
 
 ```
-- <YYMMDD-HH-MM> — <one-line session summary> (flight-workbench/history/<filename>)
+- <prefix> — <one-line session summary> (flight-workbench/history/<filename>)
 ```
 
 If `## Recent sessions` has more than 5 entries after the prepend, move the oldest entries below the list under a `(older sessions in flight-workbench/history/)` line. Keep the top 5 visible.

@@ -29,10 +29,10 @@ Read `./CLAUDE.md`. Locate the `## Open tasks` section.
 Append the new task as a markdown list item with a date prefix:
 
 ```
-- [<YYMMDD-HH-MM>] <task text>
+- [<prefix>] <task text>
 ```
 
-Get the timestamp from `date +%y%m%d-%H-%M`. If the **Open tasks** section starts with the placeholder text `(No open tasks yet...)`, remove that line first.
+Get the timestamp from `date +"${FLIGHT_FILE_PREFIX:-%y%m%d-%H-%M}"` (env var `FLIGHT_FILE_PREFIX` overrides the default; default renders as `YYMMDD-HH-MM`). If the **Open tasks** section starts with the placeholder text `(No open tasks yet...)`, remove that line first.
 
 If the `## Open tasks` section does not exist (e.g. CLAUDE.md was edited and the heading was removed), add it just before `## Project memos`, or at the end of the file if `## Project memos` is also missing.
 
@@ -46,7 +46,7 @@ After updating, confirm to the user:
 
 Generate a short, descriptive filename slug from the memo's first line or topic (kebab-case, lowercase, ASCII).
 
-Write the memo to `./flight-workbench/memos/<YYMMDD-HH-MM>-<slug>.md`:
+Write the memo to `./flight-workbench/memos/<prefix>-<slug>.md` (where `<prefix>` comes from `date +"${FLIGHT_FILE_PREFIX:-%y%m%d-%H-%M}"`):
 
 ```markdown
 # <derived title>
@@ -58,14 +58,14 @@ Write the memo to `./flight-workbench/memos/<YYMMDD-HH-MM>-<slug>.md`:
 
 Confirm to the user:
 
-> **Memo saved.** `flight-workbench/memos/<YYMMDD-HH-MM>-<slug>.md`
+> **Memo saved.** `flight-workbench/memos/<prefix>-<slug>.md`
 >
 > Want me to also add a one-line pointer to this in your open tasks (so it shows up at next session start)? (yes/no)
 
 If yes, add an entry like:
 
 ```
-- [<YYMMDD-HH-MM>] Follow up on memo: <slug> (see flight-workbench/memos/<YYMMDD-HH-MM>-<slug>.md)
+- [<prefix>] Follow up on memo: <slug> (see flight-workbench/memos/<prefix>-<slug>.md)
 ```
 
 to CLAUDE.md's **Open tasks** section, following the same rules as Step 2a.

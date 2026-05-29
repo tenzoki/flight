@@ -90,7 +90,7 @@ If the user passed a topic argument (`/flight:help workflow`), jump to that sect
 >     └── .flight-setup                ← marker showing when setup ran
 > ```
 >
-> **Filename rule:** every file flight creates has a date-time prefix in the format `YYMMDD-HH-MM`, like `260528-04-50-meeting-notes.md`. That makes them easy to sort and find.
+> **Filename rule:** every file flight creates has a date-time prefix. The default format is `YYMMDD-HH-MM`, like `260528-04-50-meeting-notes.md` — easy to sort and find. If you want a different shape (e.g. full year, with seconds), set the env var `FLIGHT_FILE_PREFIX` to a `date(1)` strftime string (e.g. `export FLIGHT_FILE_PREFIX='%Y%m%d-%H%M%S'`).
 >
 > **Where to look for things:** if you cannot find something, ask me "did we talk about X?" — I always check the history folder.
 

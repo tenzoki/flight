@@ -62,7 +62,7 @@ your-project/
     └── .flight-setup                ← setup marker (when/where)
 ```
 
-Every file flight creates carries a date-time prefix: `<YYMMDD-HH-MM>-<name>.<ext>`. Easy to sort and find.
+Every file flight creates carries a date-time prefix: `<prefix>-<name>.<ext>`. The default prefix renders as `YYMMDD-HH-MM` (e.g. `260528-04-50`). You can override it by setting the environment variable `FLIGHT_FILE_PREFIX` to a `date(1)` strftime string — e.g. `export FLIGHT_FILE_PREFIX='%Y%m%d-%H%M%S'` for full-year + seconds precision. Default keeps existing projects working; change it only on a clean project, or you will get inconsistent sort order.
 
 ## Language
 

@@ -1,12 +1,12 @@
 ---
-description: Archive completed or aged workbench files into flight-workbench/archive/<YYMMDD-HH-MM>-<slug>/. Supports natural-language description ("archive everything older than April", "archive the closed decisions") or pre-defined tiers (recent / mid / deep). Surveys, proposes, asks for confirmation, then moves. Use when the workbench has grown crowded and you want to thin it out without deleting anything.
+description: Archive completed or aged workbench files into flight-workbench/archive/<prefix>-<slug>/ (prefix from env var FLIGHT_FILE_PREFIX, default YYMMDD-HH-MM). Supports natural-language description ("archive everything older than April", "archive the closed decisions") or pre-defined tiers (recent / mid / deep). Surveys, proposes, asks for confirmation, then moves. Use when the workbench has grown crowded and you want to thin it out without deleting anything.
 argument-hint: [tier or natural-language description]
 allowed-tools: [Read, Write, Bash, Edit, AskUserQuestion]
 ---
 
 # /flight:archive — thin out the workbench
 
-Move completed or aged files in the workbench into a single timestamped archive bundle. Nothing is deleted — everything stays on disk under `flight-workbench/archive/<YYMMDD-HH-MM>-<slug>/` and can be retrieved any time.
+Move completed or aged files in the workbench into a single timestamped archive bundle. Nothing is deleted — everything stays on disk under `flight-workbench/archive/<prefix>-<slug>/` and can be retrieved any time. The `<prefix>` is the project's configured date-time prefix (env var `FLIGHT_FILE_PREFIX`, default `%y%m%d-%H-%M` → `YYMMDD-HH-MM`).
 
 This is **distinct from `/flight:cleanup`**:
 - `/flight:cleanup` operates on CLAUDE.md's open-task list only.
@@ -40,10 +40,10 @@ Show the user the candidate list grouped by folder, with counts:
 
 > **Archive proposal**
 >
-> Will move N files into `flight-workbench/archive/<YYMMDD-HH-MM>-<slug>/`:
+> Will move N files into `flight-workbench/archive/<prefix>-<slug>/`:
 >
 > **From `history/` (X files):**
-> - <YYMMDD-HH-MM>-session.md (modified <date>)
+> - <prefix>-session.md (modified <date>)
 > - ...
 >
 > **From `memos/` (Y files):**
@@ -66,12 +66,12 @@ If the candidate list is empty:
 
 ## Step 4 — Generate the archive slug
 
-Build a short kebab-case slug describing the scope (`older-than-14d`, `mid-tier`, `closed-decisions`, `pre-april-2026`, etc.). Get the timestamp: `date +%y%m%d-%H-%M`.
+Build a short kebab-case slug describing the scope (`older-than-14d`, `mid-tier`, `closed-decisions`, `pre-april-2026`, etc.). Get the timestamp: `date +"${FLIGHT_FILE_PREFIX:-%y%m%d-%H-%M}"` (env var `FLIGHT_FILE_PREFIX` overrides the default).
 
 Create the archive bundle directory:
 
 ```bash
-TS="$(date +%y%m%d-%H-%M)"
+TS="$(date +"${FLIGHT_FILE_PREFIX:-%y%m%d-%H-%M}")"
 SLUG="<slug>"
 mkdir -p "./flight-workbench/archive/${TS}-${SLUG}/history" "./flight-workbench/archive/${TS}-${SLUG}/memos" "./flight-workbench/archive/${TS}-${SLUG}/decisions"
 ```
@@ -91,7 +91,7 @@ Use `mv` (not `cp`) — the file leaves its original folder. The archive is the 
 Write `./flight-workbench/archive/<TS>-<SLUG>/README.md`:
 
 ```markdown
-# Archive — <YYMMDD-HH-MM> — <human-readable scope>
+# Archive — <prefix> — <human-readable scope>
 
 **Created:** <YYYY-MM-DD HH:MM>
 **Scope:** <user's scope description or tier label>

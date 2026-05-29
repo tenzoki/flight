@@ -26,7 +26,7 @@ If the section has no tasks (or only the placeholder), tell the user and exit:
 For each task line, classify as:
 
 - **Closed** — line starts with `- [x]`, `- ✓`, `- [DONE]`, `- [done]`, or contains `(closed)`, `(done)`, `(resolved)`, or `RESOLVED` at end. These will be removed without asking.
-- **Stale-looking** — line has a date prefix `[YYMMDD-HH-MM]` and the date is more than 30 days old AND nothing in the line indicates it is recurring or pinned. Flag for user review.
+- **Stale-looking** — line has a date prefix matching the project's `FLIGHT_FILE_PREFIX` shape (default `YYMMDD-HH-MM`) and the date is more than 30 days old AND nothing in the line indicates it is recurring or pinned. Flag for user review.
 - **Redundant** — two or more tasks reference the same subject (substring similarity heuristic). Flag the group for user review.
 - **Current** — everything else. Keep.
 
@@ -58,10 +58,10 @@ For redundant groups, present the group together and ask which to keep (if any) 
 
 ## Step 5 — Write the archive file
 
-Get timestamp: `date +%y%m%d-%H-%M`. Create:
+Get timestamp: `date +"${FLIGHT_FILE_PREFIX:-%y%m%d-%H-%M}"` (env var overrides default; default renders as `YYMMDD-HH-MM`). Create:
 
 ```
-./flight-workbench/archive/<YYMMDD-HH-MM>-cleanup-strippings.md
+./flight-workbench/archive/<prefix>-cleanup-strippings.md
 ```
 
 Content:

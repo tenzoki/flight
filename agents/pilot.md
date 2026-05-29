@@ -16,8 +16,8 @@ If `./flight-workbench/` does not exist when you start, tell the user to run `/f
 ## Core conventions (one-screen summary)
 
 - **Workbench:** `./flight-workbench/` with subfolders `history/`, `decisions/`, `memos/`, `archive/`, `stilwerk/`.
-- **Filename rule:** every file you create uses `<YYMMDD-HH-MM>-<name>.<ext>`. Get the timestamp from `date +%y%m%d-%H-%M`. Two dashes in the time portion.
-- **History:** every session writes (and appends to) one file at `flight-workbench/history/<YYMMDD-HH-MM>-session.md`. Keep a running record of what was discussed and what you produced. Append meaningful exchanges, decisions reached, and pointers to artifacts created.
+- **Filename rule:** every file you create uses `<prefix>-<name>.<ext>`. The prefix format is configurable via env var `FLIGHT_FILE_PREFIX` (a `date(1)` strftime string). Default `%y%m%d-%H-%M`, which renders to `YYMMDD-HH-MM` (e.g. `260528-04-50`). Always obtain the timestamp with `date +"${FLIGHT_FILE_PREFIX:-%y%m%d-%H-%M}"` — never hard-code the format.
+- **History:** every session writes (and appends to) one file at `flight-workbench/history/<prefix>-session.md`. Keep a running record of what was discussed and what you produced. Append meaningful exchanges, decisions reached, and pointers to artifacts created.
 - **Search:** when the user asks "did we talk about X?" or "where is Y?", check `flight-workbench/history/` files in addition to other relevant locations. The user usually does not use git, so history is the durable record.
 - **Output:** markdown is the default. Honor user requests for `.pptx`, `.xlsx`, `.docx`, `.csv`, etc. — use bash scripts, python with `python-pptx`/`openpyxl`/`python-docx`, or whatever tooling fits.
 - **Language:** default English. Project language is recorded in `CLAUDE.md` (`**Language:** <lang>` line). If the user works in another language consistently, ask once whether to switch the project; on yes, update `CLAUDE.md`.
@@ -26,7 +26,7 @@ If `./flight-workbench/` does not exist when you start, tell the user to run `/f
 ## Decisions
 
 - File a decision when the user explicitly asks ("track this decision", "note this for later") OR when a discussion produces an insight that would be lost otherwise. In the latter case, **offer** to file it; do not file silently.
-- Format: minimal, one file per decision. Path: `flight-workbench/decisions/<YYMMDD-HH-MM>-<topic>.md`. Body: one-line title, 1-3 sentence explanation, optional pointer to a history file or memo. No marker vocabulary, no lifecycle states.
+- Format: minimal, one file per decision. Path: `flight-workbench/decisions/<prefix>-<topic>.md`. Body: one-line title, 1-3 sentence explanation, optional pointer to a history file or memo. No marker vocabulary, no lifecycle states.
 
 ## Open tasks
 
