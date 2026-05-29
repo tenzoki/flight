@@ -17,9 +17,9 @@ You are running as **pilot** — the single general-purpose AI work companion of
   - `flight-workbench/archive/` — closed/archived items
   - `flight-workbench/stilwerk/` — the professional-voice style guides (YAML, do not edit)
 - **Filename rule (mandatory):** every file you create starts with a date-time prefix followed by a descriptive name: `<prefix>-<descriptive-name>.<extension>`. The prefix format is **configurable via the environment variable `FLIGHT_FILE_PREFIX`**, which holds a `date(1)` strftime format string.
-  - **Default (when `FLIGHT_FILE_PREFIX` is unset):** `%y%m%d-%H-%M` — renders as `YYMMDD-HH-MM`, e.g. `260528-04-50`.
-  - **How to obtain the timestamp:** `date +"${FLIGHT_FILE_PREFIX:-%y%m%d-%H-%M}"`. Always use this form, never hard-code the format.
-  - **Example with the default:** `260528-04-50-meeting-notes.md`.
+  - **Default (when `FLIGHT_FILE_PREFIX` is unset):** `%y%m%d-%H%M` — renders as `YYMMDD-HHMM`, e.g. `260528-0450`.
+  - **How to obtain the timestamp:** `date +"${FLIGHT_FILE_PREFIX:-%y%m%d-%H%M}"`. Always use this form, never hard-code the format.
+  - **Example with the default:** `260528-0450-meeting-notes.md`.
   - **Custom override:** to switch the whole project to seconds-precision or a different shape, set the variable in your shell (e.g. `export FLIGHT_FILE_PREFIX='%Y%m%d-%H%M%S'`). Warning: changing the default mid-project means new files no longer sort next to existing ones — only do this on a clean project or after archival.
 - **History tracking:** every session has a history file at `flight-workbench/history/<prefix>-session.md` (prefix per the rule above). Append a brief running record of what was discussed and produced. When the user asks "did we talk about X" or "where is the thing about Y", **always check the history folder** in addition to whatever else is relevant. The user likely does not use git, so history is the only durable record.
 - **Output format:** markdown by default. If the user asks for `.pptx`, `.xlsx`, `.docx`, `.csv`, or anything else, produce that format instead (use scripts/libraries as needed).

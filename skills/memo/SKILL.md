@@ -32,7 +32,7 @@ Append the new task as a markdown list item with a date prefix:
 - [<prefix>] <task text>
 ```
 
-Get the timestamp from `date +"${FLIGHT_FILE_PREFIX:-%y%m%d-%H-%M}"` (env var `FLIGHT_FILE_PREFIX` overrides the default; default renders as `YYMMDD-HH-MM`). If the **Open tasks** section starts with the placeholder text `(No open tasks yet...)`, remove that line first.
+Get the timestamp from `date +"${FLIGHT_FILE_PREFIX:-%y%m%d-%H%M}"` (env var `FLIGHT_FILE_PREFIX` overrides the default; default renders as `YYMMDD-HHMM`). If the **Open tasks** section starts with the placeholder text `(No open tasks yet...)`, remove that line first.
 
 If the `## Open tasks` section does not exist (e.g. CLAUDE.md was edited and the heading was removed), add it just before `## Project memos`, or at the end of the file if `## Project memos` is also missing.
 
@@ -46,7 +46,7 @@ After updating, confirm to the user:
 
 Generate a short, descriptive filename slug from the memo's first line or topic (kebab-case, lowercase, ASCII).
 
-Write the memo to `./flight-workbench/memos/<prefix>-<slug>.md` (where `<prefix>` comes from `date +"${FLIGHT_FILE_PREFIX:-%y%m%d-%H-%M}"`):
+Write the memo to `./flight-workbench/memos/<prefix>-<slug>.md` (where `<prefix>` comes from `date +"${FLIGHT_FILE_PREFIX:-%y%m%d-%H%M}"`):
 
 ```markdown
 # <derived title>
