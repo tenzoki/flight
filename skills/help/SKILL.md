@@ -12,7 +12,7 @@ If the user passed a topic argument (`/flight:help workflow`), jump to that sect
 
 ## Short overview (default response)
 
-> **Flight is a lightweight AI work companion.** You talk to me, I help — analyzing documents, discussing topics, drafting written outputs (memos, summaries, decisions, plans). Everything you ask me to remember lives in your project folder, so the next session picks up where we left off.
+> **Flight is a lightweight AI work companion.** You talk to me, I help — analyzing documents, discussing topics, drafting written outputs (analyses, summaries, plans, slide decks). Deliverables land at your project root, easy to find. User memos (quick open-task notes filed via `/flight:memo`) and the durable session record live in `flight-workbench/` — flight's internal scaffolding.
 >
 > **Day-to-day flow:**
 >
@@ -23,10 +23,11 @@ If the user passed a topic argument (`/flight:help workflow`), jump to that sect
 >
 > **The key files:**
 >
+> - `<prefix>-<your-doc>.<ext>` at the project root — analyses, drafts, summaries, slide decks, anything flight produces for you. Default location for all user-requested deliverables.
 > - `CLAUDE.md` — your memo and open-task list (in your project root). Read at every session start.
 > - `flight-workbench/history/` — every session is logged here.
 > - `flight-workbench/decisions/` — important choices you asked me to track.
-> - `flight-workbench/memos/` — longer notes you saved.
+> - `flight-workbench/memos/` — user memos filed via `/flight:memo` only (open-task notes and short reminders, not deliverables).
 >
 > **The slash commands:**
 >
@@ -80,15 +81,18 @@ If the user passed a topic argument (`/flight:help workflow`), jump to that sect
 > ```
 > your-project/
 > ├── CLAUDE.md                        ← your memo file + flight conventions (read every session)
+> ├── <prefix>-<your-deliverable>.md   ← documents flight produces for you (project root, default location)
 > ├── .claude/settings.local.json      ← optional, written by /flight:unlock
-> └── flight-workbench/
->     ├── history/                     ← one file per session, the durable record
+> └── flight-workbench/                ← internal scaffolding for flight's own tracking
+>     ├── history/                     ← one file per session, the durable record (auto-logged)
 >     ├── decisions/                   ← important choices you asked me to track
->     ├── memos/                       ← longer notes filed via /flight:memo
+>     ├── memos/                       ← user memos filed via /flight:memo only (open-task notes)
 >     ├── archive/                     ← /flight:archive and /flight:cleanup move stuff here
->     ├── stilwerk/                    ← the professional-voice style profiles (do not edit)
+>     ├── stilwerk/                    ← the professional-voice style profiles (read-only)
 >     └── .flight-setup                ← marker showing when setup ran
 > ```
+>
+> **Project root vs. workbench.** Your deliverables — analyses, drafts, summaries, slide decks, anything flight produces *for you* — sit at the project root next to `CLAUDE.md`, easy to find. `flight-workbench/` is internal scaffolding: session histories, decision records, archived items, and style profiles. You do not need to look in there day-to-day. In particular, `flight-workbench/memos/` is reserved for short user memos filed via `/flight:memo` — it is **not** where deliverables go.
 >
 > **Filename rule:** every file flight creates has a date-time prefix. The default format is `YYMMDD-HHMM`, like `260528-0450-meeting-notes.md` — easy to sort and find. If you want a different shape (e.g. full year, with seconds), set the env var `FLIGHT_FILE_PREFIX` to a `date(1)` strftime string (e.g. `export FLIGHT_FILE_PREFIX='%Y%m%d-%H%M%S'`).
 >

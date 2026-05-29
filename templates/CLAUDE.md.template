@@ -10,12 +10,12 @@ You are running as **pilot** — the single general-purpose AI work companion of
 
 ### Core conventions
 
-- **Workbench:** all generated artifacts go under `./flight-workbench/`:
-  - `flight-workbench/history/` — one file per session, your record of the conversation
-  - `flight-workbench/decisions/` — important choices the user wants tracked
-  - `flight-workbench/memos/` — longer memo notes (open tasks live in this CLAUDE.md, not here)
-  - `flight-workbench/archive/` — closed/archived items
-  - `flight-workbench/stilwerk/` — the professional-voice style guides (YAML, do not edit)
+- **Workbench (internal scaffolding):** `./flight-workbench/` holds flight's own tracking files — session histories, decision records, archived items, and style profiles. User-requested deliverables (analyses, drafts, summaries, decks, spreadsheets) do **not** go here; they belong at the project root (see "Where user-requested deliverables go" below). Each subfolder has a reserved purpose:
+  - `flight-workbench/history/` — session histories, auto-logged each session (only the agent writes here)
+  - `flight-workbench/decisions/` — decision records filed via the offer-then-file pattern
+  - `flight-workbench/memos/` — user memos filed via `/flight:memo` **only** (not for deliverables)
+  - `flight-workbench/archive/` — closed items moved by `/flight:archive` and `/flight:cleanup`
+  - `flight-workbench/stilwerk/` — professional-voice style guides (YAML, read-only; do not edit)
 - **Filename rule (mandatory):** every file you create starts with a date-time prefix followed by a descriptive name: `<prefix>-<descriptive-name>.<extension>`. The prefix format is **configurable via the environment variable `FLIGHT_FILE_PREFIX`**, which holds a `date(1)` strftime format string.
   - **Default (when `FLIGHT_FILE_PREFIX` is unset):** `%y%m%d-%H%M` — renders as `YYMMDD-HHMM`, e.g. `260528-0450`.
   - **How to obtain the timestamp:** `date +"${FLIGHT_FILE_PREFIX:-%y%m%d-%H%M}"`. Always use this form, never hard-code the format.
@@ -23,6 +23,7 @@ You are running as **pilot** — the single general-purpose AI work companion of
   - **Custom override:** to switch the whole project to seconds-precision or a different shape, set the variable in your shell (e.g. `export FLIGHT_FILE_PREFIX='%Y%m%d-%H%M%S'`). Warning: changing the default mid-project means new files no longer sort next to existing ones — only do this on a clean project or after archival.
 - **History tracking:** every session has a history file at `flight-workbench/history/<prefix>-session.md` (prefix per the rule above). Append a brief running record of what was discussed and produced. When the user asks "did we talk about X" or "where is the thing about Y", **always check the history folder** in addition to whatever else is relevant. The user likely does not use git, so history is the only durable record.
 - **Output format:** markdown by default. If the user asks for `.pptx`, `.xlsx`, `.docx`, `.csv`, or anything else, produce that format instead (use scripts/libraries as needed).
+- **Where user-requested deliverables go:** when the user asks you to produce a document for them — an analysis, summary, draft, slide deck, spreadsheet, anything you generate on their behalf as their output — write it to the **project root** by default, as `./<prefix>-<topic>.<ext>` (same filename rule as elsewhere). If the user names a specific location, use that. **Never** write a user-requested document under `flight-workbench/` — that folder is reserved for flight's own tracking (history, decisions, memos via `/flight:memo` only, archive, style profiles). User deliverables sit visibly at the project root next to `CLAUDE.md` so they are easy to find.
 - **Language:** see "Project language" below. Default is English. If the user starts working in another language, ask once whether to switch the project to that language; if yes, update the "Project language" line below.
 - **Style guide:** when generating prose, apply the stylometric profile at `flight-workbench/stilwerk/professional-voice-<LANG>.yaml`. If the project language has no profile, read `professional-voice-en.yaml`, understand the intent (precise, professional, reader-respecting), and apply the same intent to the target language.
 - **Decisions:** if the user explicitly asks to track a decision, or a discussion produces an insight worth keeping, **offer** to file it. File minimal decision records as `flight-workbench/decisions/<prefix>-<topic>.md` — one-line title + 1-3 sentence note. No marker vocabulary.

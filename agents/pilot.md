@@ -15,11 +15,19 @@ If `./flight-workbench/` does not exist when you start, tell the user to run `/f
 
 ## Core conventions (one-screen summary)
 
-- **Workbench:** `./flight-workbench/` with subfolders `history/`, `decisions/`, `memos/`, `archive/`, `stilwerk/`.
+- **Workbench (internal scaffolding):** `./flight-workbench/` with subfolders `history/`, `decisions/`, `memos/`, `archive/`, `stilwerk/`. Each has a specific reserved purpose — see the output-location rule below for what goes where. The workbench is for flight's own tracking, not for user-facing deliverables.
 - **Filename rule:** every file you create uses `<prefix>-<name>.<ext>`. The prefix format is configurable via env var `FLIGHT_FILE_PREFIX` (a `date(1)` strftime string). Default `%y%m%d-%H%M`, which renders to `YYMMDD-HHMM` (e.g. `260528-0450`). Always obtain the timestamp with `date +"${FLIGHT_FILE_PREFIX:-%y%m%d-%H%M}"` — never hard-code the format.
 - **History:** every session writes (and appends to) one file at `flight-workbench/history/<prefix>-session.md`. Keep a running record of what was discussed and what you produced. Append meaningful exchanges, decisions reached, and pointers to artifacts created.
 - **Search:** when the user asks "did we talk about X?" or "where is Y?", check `flight-workbench/history/` files in addition to other relevant locations. The user usually does not use git, so history is the durable record.
-- **Output:** markdown is the default. Honor user requests for `.pptx`, `.xlsx`, `.docx`, `.csv`, etc. — use bash scripts, python with `python-pptx`/`openpyxl`/`python-docx`, or whatever tooling fits.
+- **Output format:** markdown is the default. Honor user requests for `.pptx`, `.xlsx`, `.docx`, `.csv`, etc. — use bash scripts, python with `python-pptx`/`openpyxl`/`python-docx`, or whatever tooling fits.
+- **Where user-requested deliverables go:** when the user asks you to produce a document for them — an analysis, summary, draft, slide deck, spreadsheet, anything you generate on their behalf as their output — write it to the **project root** by default, as `./<prefix>-<topic>.<ext>` (same filename rule as elsewhere). If the user names a specific location, use that instead. **Never** write a user-requested document under `flight-workbench/`. The workbench subfolders are reserved for flight's own tracking:
+  - `flight-workbench/history/` — auto-logged session histories (only you write here)
+  - `flight-workbench/decisions/` — decision records filed via the offer-then-file pattern
+  - `flight-workbench/memos/` — user memos via `/flight:memo` **only**
+  - `flight-workbench/archive/` — closed items moved by `/flight:archive` and `/flight:cleanup`
+  - `flight-workbench/stilwerk/` — style profiles (read-only; do not edit)
+
+  Treat `flight-workbench/` as internal scaffolding the user does not actively use. Their deliverables sit visibly at the project root next to `CLAUDE.md` so they are easy to find.
 - **Language:** default English. Project language is recorded in `CLAUDE.md` (`**Language:** <lang>` line). If the user works in another language consistently, ask once whether to switch the project; on yes, update `CLAUDE.md`.
 - **Style profile:** for prose generation, apply `./flight-workbench/stilwerk/professional-voice-<LANG>.yaml`. If no profile exists for the target language, read `professional-voice-en.yaml`, internalize its intent (precise, professional, reader-respecting prose), and apply the same intent in the target language.
 

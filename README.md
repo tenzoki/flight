@@ -9,7 +9,7 @@ flight is a flightweight cousin of [fusion](https://github.com/tenzoki/fusion). 
 ## What flight does
 
 - **Analyzes documents and discusses topics.** Bring a PDF, a spec, a transcript — talk it through, get a summary, draft a response.
-- **Produces well-styled written outputs.** Markdown by default; also `.pptx`, `.xlsx`, `.docx`, etc. on request. Prose generation applies a professional-voice stylometric profile so the output reads cleanly.
+- **Produces well-styled written outputs.** Markdown by default; also `.pptx`, `.xlsx`, `.docx`, etc. on request. Prose generation applies a professional-voice stylometric profile so the output reads cleanly. Deliverables land at the **project root** by default (next to `CLAUDE.md`), not inside `flight-workbench/`.
 - **Tracks open tasks** in your project's `CLAUDE.md` — they show up automatically every session.
 - **Files decisions** when you ask (or when a discussion surfaces an insight worth keeping).
 - **Logs every session** to `flight-workbench/history/`, so the conversation is durable even if you do not use git.
@@ -52,15 +52,18 @@ After that, just talk. When done, `/flight:land` closes the session cleanly.
 ```
 your-project/
 ├── CLAUDE.md                        ← your memo file + flight conventions
+├── <prefix>-<your-deliverable>.md   ← documents flight produces for you (project root, default location)
 ├── .claude/settings.local.json      ← optional, written by /flight:unlock
-└── flight-workbench/
-    ├── history/                     ← one file per session
+└── flight-workbench/                ← internal scaffolding for flight's own tracking
+    ├── history/                     ← one file per session (auto-logged)
     ├── decisions/                   ← important choices you tracked
-    ├── memos/                       ← longer notes filed via /flight:memo
+    ├── memos/                       ← user memos filed via /flight:memo only (not deliverables)
     ├── archive/                     ← /flight:cleanup and /flight:archive move here
-    ├── stilwerk/                    ← professional-voice style profiles
+    ├── stilwerk/                    ← professional-voice style profiles (read-only)
     └── .flight-setup                ← setup marker (when/where)
 ```
+
+Your deliverables — analyses, summaries, drafts, slide decks, anything flight produces for you — sit at the project root next to `CLAUDE.md`, easy to find. `flight-workbench/` is internal scaffolding for flight's own tracking; you do not need to look in there day-to-day.
 
 Every file flight creates carries a date-time prefix: `<prefix>-<name>.<ext>`. The default prefix renders as `YYMMDD-HHMM` (e.g. `260528-0450`). You can override it by setting the environment variable `FLIGHT_FILE_PREFIX` to a `date(1)` strftime string — e.g. `export FLIGHT_FILE_PREFIX='%Y%m%d-%H%M%S'` for full-year + seconds precision. Default keeps existing projects working; change it only on a clean project, or you will get inconsistent sort order.
 
