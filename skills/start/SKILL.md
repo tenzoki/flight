@@ -47,10 +47,10 @@ Replace `<plugin-root>` with the path resolved in Step 1. After the copy, list `
 ## Step 4 — Write the setup marker
 
 ```bash
-printf '{"setup_at":"%s","setup_pwd":"%s","plugin_version":"%s"}\n' "$(date +%Y-%m-%dT%H:%M:%S%z)" "$(pwd -P)" "0.1.0" > ./flight-workbench/.flight-setup
+printf '{"setup_at":"%s","setup_pwd":"%s","plugin_version":"%s"}\n' "$(date +%Y-%m-%dT%H:%M:%S%z)" "$(pwd -P)" "$(grep '"version"' "<plugin-root>/.claude-plugin/plugin.json" | head -1 | sed -E 's/.*"version": *"([^"]+)".*/\1/')" > ./flight-workbench/.flight-setup
 ```
 
-This is a small JSON file that records when and where setup ran. Harmless to overwrite on re-runs.
+The plugin version is read from `<plugin-root>/.claude-plugin/plugin.json` so the marker always reflects what version of flight set up this project. Replace `<plugin-root>` with the path resolved in Step 1. Harmless to overwrite on re-runs.
 
 ## Step 5 — Initialize CLAUDE.md (only if missing)
 
