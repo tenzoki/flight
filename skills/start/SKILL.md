@@ -1,5 +1,5 @@
 ---
-description: Initialize the flight workbench in the current project directory. Creates ./flight-workbench/ with subfolders (history, decisions, memos, archive, stilwerk), copies the stylometric profiles, initializes CLAUDE.md (the user's memo and instruction file) from the template if missing, then reads CLAUDE.md and reports any open tasks to the user. Run once per project, or re-run any time to refresh the stilwerk profiles and verify the layout. Idempotent — never overwrites user content.
+description: Initialize the flight workbench in the current project directory. Creates ./flight-workbench/ with subfolders (history, decisions, memos, archive, stilwerk), copies the stylometric profiles, initializes CLAUDE.md (flight's conventions/instruction file) from the template if missing, then reports any open tasks from flight-workbench/memos/tasks-<user>.md. Run once per project, or re-run any time to refresh the stilwerk profiles and verify the layout. Idempotent — never overwrites user content.
 allowed-tools: [Read, Write, Bash, Edit, AskUserQuestion]
 ---
 
@@ -62,6 +62,33 @@ Check if `./CLAUDE.md` exists.
 
 **If it already exists:** read it. Do NOT overwrite. The user has already curated content here. Report to the user: "Found existing CLAUDE.md — keeping it as is."
 
+## Step 5b — Migrate legacy task/memo data out of CLAUDE.md (one-time)
+
+Older flight versions stored open tasks and memos inside `CLAUDE.md`. Flight no longer does — `CLAUDE.md` is auto-loaded into every session and shared with other tools (e.g. fusion) whose CLAUDE.md upkeep would clobber such data. If a project's CLAUDE.md still holds legacy data, offer to migrate it.
+
+Determine the OS user: `echo "$USER"`. Read `./CLAUDE.md` (if present) and detect any of:
+
+- a `## Open tasks` section with real list items (ignore a `(No open tasks yet...)` placeholder),
+- a `## Project memos` section with real content (ignore the placeholder),
+- a `## Recent sessions` section with entries.
+
+If none are present (e.g. a fresh slim CLAUDE.md), **skip this step silently** — it is a no-op on every subsequent run.
+
+If any are present, tell the user and ask via `AskUserQuestion`:
+
+> Your `CLAUDE.md` still holds <N> open tasks and <M> memos from an older flight version. Flight now keeps these under `flight-workbench/memos/` so they don't collide with other tools that share CLAUDE.md.
+>
+> - **Migrate now** (Recommended) — move them into `tasks-<user>.md` / `memos-<user>.md` and remove them from CLAUDE.md.
+> - **Leave as-is** — keep them in CLAUDE.md for now (flight will not read them).
+
+On **Migrate now**:
+
+1. Append each open-task line to `flight-workbench/memos/tasks-$USER.md` (create it from its header if missing), preserving the original text and any date prefix.
+2. Append the project memos to `flight-workbench/memos/memos-$USER.md` (create from header if missing) under one dated section header `## <YYYY-MM-DD HH:MM> — Migrated from CLAUDE.md`, content verbatim.
+3. Do **not** copy `## Recent sessions` entries — they are already covered by `flight-workbench/history/`. Just remove that section.
+4. Remove the `## Open tasks`, `## Project memos`, and `## Recent sessions` sections (and any now-dangling `---` separators) from `CLAUDE.md`. Leave everything else untouched — never delete the `**Language:**` line or user-curated conventions.
+5. Confirm: "Migrated N tasks and M memos into `flight-workbench/memos/`; removed them from CLAUDE.md."
+
 ## Step 6 — Create today's session history file
 
 Get the current timestamp using the configurable prefix format (env var `FLIGHT_FILE_PREFIX`, defaulting to `%Y-%m-%d_%H-%M`). Create the session history file:
@@ -82,13 +109,13 @@ EOF
 
 This file will be appended to throughout the session and finalized at `/flight:land`.
 
-## Step 7 — Read CLAUDE.md and summarize
+## Step 7 — Gather session-start context
 
-Read `./CLAUDE.md` and extract:
+Determine the OS user: `echo "$USER"`. Then gather:
 
-1. The **Language** line (default English).
-2. The **Open tasks** section. Count the open tasks. If any exist, list them.
-3. Any session entries under **Recent sessions** (newest first; show up to 3).
+1. **Language** — read the `**Language:**` line from `./CLAUDE.md` (default English).
+2. **Open tasks** — read `./flight-workbench/memos/tasks-$USER.md`. Count the open tasks; if any exist, list them. If the file does not exist yet, there are simply no open tasks. (Tasks are no longer stored in CLAUDE.md — that file is shared with other tools.)
+3. **Recent sessions** — list the newest 2-3 files in `flight-workbench/history/` matching `*-session.md` by mtime; use each file's `## Summary` one-liner (or its filename) as the recent-session line.
 
 ## Step 8 — Report to the user
 
@@ -106,7 +133,7 @@ Output a short, action-first summary. Lead with **what the user can do next**:
 > - <recent session line 1>
 > - <recent session line 2>
 >
-> **Details:** Workbench at `./flight-workbench/`; CLAUDE.md at project root; style profiles installed under `flight-workbench/stilwerk/`; this session's history at `flight-workbench/history/<TS>-session.md`. Type `/flight:help` for a tour.
+> **Details:** Workbench at `./flight-workbench/`; CLAUDE.md at project root (language + flight conventions only); open tasks at `flight-workbench/memos/tasks-<user>.md`; style profiles under `flight-workbench/stilwerk/`; this session's history at `flight-workbench/history/<TS>-session.md`. Type `/flight:help` for a tour.
 
 If there are no open tasks, say so explicitly and prompt for input:
 

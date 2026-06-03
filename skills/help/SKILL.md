@@ -12,7 +12,7 @@ If the user passed a topic argument (`/flight:help workflow`), jump to that sect
 
 ## Short overview (default response)
 
-> **Flight is a lightweight AI work companion.** You talk to me, I help — analyzing documents, discussing topics, drafting written outputs (analyses, summaries, plans, slide decks). Deliverables land at your project root, easy to find. User memos (quick open-task notes filed via `/flight:memo`) and the durable session record live in `flight-workbench/` — flight's internal scaffolding.
+> **Flight is a lightweight AI work companion.** You talk to me, I help — analyzing documents, discussing topics, drafting written outputs (analyses, summaries, plans, slide decks). Deliverables land at your project root, easy to find. Your open tasks and memos (filed via `/flight:memo`) and the durable session record live in `flight-workbench/` — flight's internal scaffolding.
 >
 > **Day-to-day flow:**
 >
@@ -24,10 +24,10 @@ If the user passed a topic argument (`/flight:help workflow`), jump to that sect
 > **The key files:**
 >
 > - `<prefix>-<your-doc>.<ext>` at the project root — analyses, drafts, summaries, slide decks, anything flight produces for you. Default location for all user-requested deliverables.
-> - `CLAUDE.md` — your memo and open-task list (in your project root). Read at every session start.
+> - `CLAUDE.md` — project language + flight conventions (in your project root). Read at every session start. (Your tasks and memos are not here — they live under `flight-workbench/memos/`.)
 > - `flight-workbench/history/` — every session is logged here.
 > - `flight-workbench/decisions/` — important choices you asked me to track.
-> - `flight-workbench/memos/` — user memos filed via `/flight:memo` only (open-task notes and short reminders, not deliverables).
+> - `flight-workbench/memos/` — your open tasks (`tasks-<user>.md`) and memos (`memos-<user>.md`), filed via `/flight:memo` only (not deliverables).
 >
 > **The slash commands:**
 >
@@ -36,7 +36,7 @@ If the user passed a topic argument (`/flight:help workflow`), jump to that sect
 > | `/flight:start` | First time in a project, or to refresh the setup |
 > | `/flight:land` | Closing the session — summary + cleanup |
 > | `/flight:memo` | Capture an open task or a longer note |
-> | `/flight:cleanup` | Trim closed/stale tasks from CLAUDE.md |
+> | `/flight:cleanup` | Trim closed/stale tasks from your task list |
 > | `/flight:archive` | Move old files into the archive folder |
 > | `/flight:unlock` | Stop the permission prompts (one-time per project) |
 > | `/flight:help` | This. With an optional topic — try `/flight:help workflow` |
@@ -54,7 +54,7 @@ If the user passed a topic argument (`/flight:help workflow`), jump to that sect
 >    - "Help me think through whether to do X or Y."
 >    - "Remember that I prefer concise output." (I will offer to file this as a project memo.)
 > 3. **Track decisions and tasks as we go.** When something important is decided, I will offer to file it under `flight-workbench/decisions/`. When you mention a task, I will offer to add it to your open-task list.
-> 4. **Land.** When you are done for the day or session, type `/flight:land`. I will write a session summary, carry forward any unresolved tasks, and tidy up your CLAUDE.md.
+> 4. **Land.** When you are done for the day or session, type `/flight:land`. I will write a session summary to history and carry forward any unresolved tasks into your task list.
 
 ## Topic: commands
 
@@ -62,9 +62,9 @@ If the user passed a topic argument (`/flight:help workflow`), jump to that sect
 >
 > **`/flight:start`** — Sets up the workbench (creates `flight-workbench/` and copies the style profiles) and reads CLAUDE.md. Safe to re-run any time; it never overwrites your content.
 >
-> **`/flight:land`** — Closes the session: writes a summary to history, carries unresolved tasks forward into CLAUDE.md, and compacts CLAUDE.md (with your approval) by adding new learnings, updating stale memos, and pruning obsolete entries.
+> **`/flight:land`** — Closes the session: writes a summary to history and carries unresolved tasks forward into `flight-workbench/memos/tasks-<user>.md`. It does not touch CLAUDE.md (that file is shared with other tools).
 >
-> **`/flight:memo <text>`** — Quick capture. Short imperative ("call Stefan about the schema") becomes an open task in CLAUDE.md. Longer text becomes a memo file under `flight-workbench/memos/`. If unsure, I will ask.
+> **`/flight:memo <text>`** — Quick capture. Short imperative ("call Stefan about the schema") becomes an open task in `flight-workbench/memos/tasks-<user>.md`. Longer text becomes a memo in `flight-workbench/memos/memos-<user>.md`. If unsure, I will ask.
 >
 > **`/flight:cleanup`** — Trims your open-task list. Removes tasks you have marked closed (e.g. with `[x]`), and asks you about each task that looks stale or redundant. Strippings go to `flight-workbench/archive/` so nothing is lost.
 >
@@ -80,19 +80,19 @@ If the user passed a topic argument (`/flight:help workflow`), jump to that sect
 >
 > ```
 > your-project/
-> ├── CLAUDE.md                        ← your memo file + flight conventions (read every session)
+> ├── CLAUDE.md                        ← project language + flight conventions (read every session)
 > ├── <prefix>-<your-deliverable>.md   ← documents flight produces for you (project root, default location)
 > ├── .claude/settings.local.json      ← optional, written by /flight:unlock
 > └── flight-workbench/                ← internal scaffolding for flight's own tracking
 >     ├── history/                     ← one file per session, the durable record (auto-logged)
 >     ├── decisions/                   ← important choices you asked me to track
->     ├── memos/                       ← user memos filed via /flight:memo only (open-task notes)
+>     ├── memos/                       ← your open tasks (tasks-<user>.md) + memos (memos-<user>.md), via /flight:memo only
 >     ├── archive/                     ← /flight:archive and /flight:cleanup move stuff here
 >     ├── stilwerk/                    ← style profiles (professional-voice for documents, chat-voice for chat; read-only)
 >     └── .flight-setup                ← marker showing when setup ran
 > ```
 >
-> **Project root vs. workbench.** Your deliverables — analyses, drafts, summaries, slide decks, anything flight produces *for you* — sit at the project root next to `CLAUDE.md`, easy to find. `flight-workbench/` is internal scaffolding: session histories, decision records, archived items, and style profiles. You do not need to look in there day-to-day. In particular, `flight-workbench/memos/` is reserved for short user memos filed via `/flight:memo` — it is **not** where deliverables go.
+> **Project root vs. workbench.** Your deliverables — analyses, drafts, summaries, slide decks, anything flight produces *for you* — sit at the project root next to `CLAUDE.md`, easy to find. `flight-workbench/` is internal scaffolding: session histories, decision records, archived items, and style profiles. You do not need to look in there day-to-day. In particular, `flight-workbench/memos/` is reserved for your open tasks and memos filed via `/flight:memo` — it is **not** where deliverables go.
 >
 > **Filename rule:** every file flight creates has a date-time prefix. The default format is `YYYY-MM-DD_HH-MM`, like `2026-05-28_04-50-meeting-notes.md` — easy to sort and find. If you want a different shape (e.g. full year, with seconds), set the env var `FLIGHT_FILE_PREFIX` to a `date(1)` strftime string (e.g. `export FLIGHT_FILE_PREFIX='%Y%m%d-%H%M%S'`).
 >
@@ -112,7 +112,7 @@ If the user passed a topic argument (`/flight:help workflow`), jump to that sect
 
 ## Topic: tasks
 
-> **Open tasks live in CLAUDE.md, in the `## Open tasks` section.** They show up automatically every time you `/flight:start`.
+> **Open tasks live in `flight-workbench/memos/tasks-<user>.md`** (one file per computer user). They show up automatically every time you `/flight:start`. They are deliberately not kept in CLAUDE.md, because that file is shared with other tools that would overwrite them.
 >
 > **Three ways tasks get there:**
 >
@@ -122,6 +122,6 @@ If the user passed a topic argument (`/flight:help workflow`), jump to that sect
 >
 > **Three ways tasks leave:**
 >
-> 1. You mark them done in CLAUDE.md (start the line with `- [x]`), then run `/flight:cleanup`.
+> 1. You mark a task done in `tasks-<user>.md` (start the line with `- [x]`), then run `/flight:cleanup`.
 > 2. `/flight:cleanup` flags stale or redundant tasks and asks you what to do.
-> 3. You edit CLAUDE.md directly — it is just a text file, you own it.
+> 3. You edit `tasks-<user>.md` directly — it is just a text file, you own it.

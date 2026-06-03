@@ -1,23 +1,23 @@
 ---
-description: Clean up CLAUDE.md's open-task list. Removes tasks the user has marked closed, and for tasks that look obviously outdated or redundant, asks the user whether to archive, delete, or keep each. Strippings go to flight-workbench/archive/<timestamp>-cleanup-strippings.md so nothing is lost. Run when the open-task list has grown long or stale; complements /flight:land (which is broader: session close + full CLAUDE.md compaction).
+description: Clean up flight's open-task list in flight-workbench/memos/tasks-<user>.md. Removes tasks the user has marked closed, and for tasks that look obviously outdated or redundant, asks the user whether to archive, delete, or keep each. Strippings go to flight-workbench/archive/<prefix>-cleanup-strippings.md so nothing is lost. Run when the open-task list has grown long or stale; complements /flight:land (which is broader: session close + history finalization). Does not touch CLAUDE.md.
 allowed-tools: [Read, Write, Edit, Bash, AskUserQuestion]
 ---
 
-# /flight:cleanup — strip closed and stale tasks from CLAUDE.md
+# /flight:cleanup — strip closed and stale tasks
 
-The open-task list in `CLAUDE.md` accumulates over time. This skill:
+The open-task list in `flight-workbench/memos/tasks-<user>.md` accumulates over time. This skill:
 
 1. **Removes** tasks the user has explicitly marked closed (any line beginning with `- [x]`, `- ✓`, `- [DONE]`, or containing `(closed)` / `(done)` / `(resolved)` at end).
 2. **Reviews** tasks that look outdated or redundant, asking the user case-by-case: archive, delete, or keep.
 3. **Archives** everything removed to a single timestamped file under `flight-workbench/archive/`, so nothing is permanently lost.
 
-This is narrower than `/flight:land`. Cleanup only touches the task list. Land does much more (session summary, full CLAUDE.md compaction, history finalization).
+This is narrower than `/flight:land`. Cleanup only touches the open-task list. It **never** touches CLAUDE.md (CLAUDE.md is shared with other tools and holds no flight tasks).
 
-## Step 1 — Read CLAUDE.md and locate the task list
+## Step 1 — Read the task list
 
-Read `./CLAUDE.md`. Locate the `## Open tasks` section. Extract every list item. Note their line positions for later replacement.
+Determine the OS user: `echo "$USER"`. Read `./flight-workbench/memos/tasks-$USER.md`. Locate every list item. Note their positions for later replacement.
 
-If the section has no tasks (or only the placeholder), tell the user and exit:
+If the file does not exist, or has no tasks (only the placeholder), tell the user and exit:
 
 > **Nothing to clean up.** Your open-task list is empty.
 
@@ -38,7 +38,7 @@ Show the user the closed-task list (if any) before removing:
 > - <task 1>
 > - <task 2>
 >
-> Archive all and remove from CLAUDE.md? (yes / no / let me review)
+> Archive all and remove from the list? (yes / no / let me review)
 
 On yes: proceed to archival. On no: skip. On review: walk through each via `AskUserQuestion` (Archive / Keep).
 
@@ -50,7 +50,7 @@ For each flagged stale or redundant task (or group), use `AskUserQuestion`:
 >
 > What should I do with this?
 >
-> - **Archive** — move to archive file, remove from CLAUDE.md (Recommended for stale)
+> - **Archive** — move to archive file, remove from the list (Recommended for stale)
 > - **Delete** — remove without archiving (only if truly meaningless)
 > - **Keep** — leave it in the open-task list
 
@@ -69,7 +69,7 @@ Content:
 ```markdown
 # Cleanup strippings — <YYYY-MM-DD HH:MM>
 
-Tasks removed from CLAUDE.md during `/flight:cleanup`.
+Tasks removed from flight-workbench/memos/tasks-<user>.md during `/flight:cleanup`.
 
 ## Closed tasks
 
@@ -95,14 +95,14 @@ If the user chose **Delete** for any tasks, list them in a final section so the 
 - <task line>
 ```
 
-## Step 6 — Rewrite CLAUDE.md's Open tasks section
+## Step 6 — Rewrite the task list
 
-Use the `Edit` tool to replace the `## Open tasks` section's body with the surviving tasks (in the order they originally appeared, with closed/archived/deleted entries removed).
+Use the `Edit` tool to replace the task list in `tasks-$USER.md` with the surviving tasks (in the order they originally appeared, with closed/archived/deleted entries removed).
 
 If the surviving list is empty, restore the placeholder:
 
 ```
-(No open tasks yet. Use `/flight:memo <task>` to add one, or just tell Claude in chat — Claude will offer to file it here.)
+(No open tasks yet. Use /flight:memo <task> to add one.)
 ```
 
 ## Step 7 — Append a log entry to the session history

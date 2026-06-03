@@ -10,7 +10,7 @@ flight is a flightweight cousin of [fusion](https://github.com/tenzoki/fusion). 
 
 - **Analyzes documents and discusses topics.** Bring a PDF, a spec, a transcript — talk it through, get a summary, draft a response.
 - **Produces well-styled written outputs.** Markdown by default; also `.pptx`, `.xlsx`, `.docx`, etc. on request. Documents apply a professional-voice stylometric profile so the prose reads cleanly; conversational replies apply a chat-voice profile that keeps them lean and direct. Deliverables land at the **project root** by default (next to `CLAUDE.md`), not inside `flight-workbench/`.
-- **Tracks open tasks** in your project's `CLAUDE.md` — they show up automatically every session.
+- **Tracks open tasks** in `flight-workbench/memos/tasks-<user>.md` — they show up automatically every session. (Not in `CLAUDE.md`, which is shared with other tools.)
 - **Files decisions** when you ask (or when a discussion surfaces an insight worth keeping).
 - **Logs every session** to `flight-workbench/history/`, so the conversation is durable even if you do not use git.
 
@@ -40,9 +40,9 @@ After that, just talk. When done, `/flight:land` closes the session cleanly.
 | Command | What it does |
 |---|---|
 | `/flight:start` | Set up or refresh the workbench, read CLAUDE.md, show open tasks |
-| `/flight:land` | Close the session — summary to history, compact CLAUDE.md, carry forward unresolved tasks |
+| `/flight:land` | Close the session — summary to history, carry forward unresolved tasks |
 | `/flight:memo <text>` | Capture an open task (or a longer memo) |
-| `/flight:cleanup` | Strip closed/stale tasks from CLAUDE.md, archive the strippings |
+| `/flight:cleanup` | Strip closed/stale tasks from your task list, archive the strippings |
 | `/flight:archive` | Move old workbench files into a timestamped archive bundle |
 | `/flight:unlock` | Write a permissive permissions file so future sessions skip approval prompts |
 | `/flight:help` | Explainer. Optional topic: workflow, commands, files, language, style, tasks |
@@ -51,13 +51,13 @@ After that, just talk. When done, `/flight:land` closes the session cleanly.
 
 ```
 your-project/
-├── CLAUDE.md                        ← your memo file + flight conventions
+├── CLAUDE.md                        ← project language + flight conventions
 ├── <prefix>-<your-deliverable>.md   ← documents flight produces for you (project root, default location)
 ├── .claude/settings.local.json      ← optional, written by /flight:unlock
 └── flight-workbench/                ← internal scaffolding for flight's own tracking
     ├── history/                     ← one file per session (auto-logged)
     ├── decisions/                   ← important choices you tracked
-    ├── memos/                       ← user memos filed via /flight:memo only (not deliverables)
+    ├── memos/                       ← your open tasks (tasks-<user>.md) + memos (memos-<user>.md), via /flight:memo only
     ├── archive/                     ← /flight:cleanup and /flight:archive move here
     ├── stilwerk/                    ← style profiles (professional-voice for documents, chat-voice for chat; read-only)
     └── .flight-setup                ← setup marker (when/where)
