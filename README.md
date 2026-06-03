@@ -9,7 +9,7 @@ flight is a flightweight cousin of [fusion](https://github.com/tenzoki/fusion). 
 ## What flight does
 
 - **Analyzes documents and discusses topics.** Bring a PDF, a spec, a transcript — talk it through, get a summary, draft a response.
-- **Produces well-styled written outputs.** Markdown by default; also `.pptx`, `.xlsx`, `.docx`, etc. on request. Prose generation applies a professional-voice stylometric profile so the output reads cleanly. Deliverables land at the **project root** by default (next to `CLAUDE.md`), not inside `flight-workbench/`.
+- **Produces well-styled written outputs.** Markdown by default; also `.pptx`, `.xlsx`, `.docx`, etc. on request. Documents apply a professional-voice stylometric profile so the prose reads cleanly; conversational replies apply a chat-voice profile that keeps them lean and direct. Deliverables land at the **project root** by default (next to `CLAUDE.md`), not inside `flight-workbench/`.
 - **Tracks open tasks** in your project's `CLAUDE.md` — they show up automatically every session.
 - **Files decisions** when you ask (or when a discussion surfaces an insight worth keeping).
 - **Logs every session** to `flight-workbench/history/`, so the conversation is durable even if you do not use git.
@@ -59,7 +59,7 @@ your-project/
     ├── decisions/                   ← important choices you tracked
     ├── memos/                       ← user memos filed via /flight:memo only (not deliverables)
     ├── archive/                     ← /flight:cleanup and /flight:archive move here
-    ├── stilwerk/                    ← professional-voice style profiles (read-only)
+    ├── stilwerk/                    ← style profiles (professional-voice for documents, chat-voice for chat; read-only)
     └── .flight-setup                ← setup marker (when/where)
 ```
 
@@ -69,7 +69,7 @@ Every file flight creates carries a date-time prefix: `<prefix>-<name>.<ext>`. T
 
 ## Language
 
-Default is English. If you work in another language, flight asks once whether to switch the project's language permanently (recorded in `CLAUDE.md`). flight ships professional-voice style profiles for English and German; for other languages, it reads the English profile and applies the same intent in the target language.
+Default is English. If you work in another language, flight asks once whether to switch the project's language permanently (recorded in `CLAUDE.md`). flight ships professional-voice style profiles (for documents) and chat-voice profiles (for conversational replies) in English and German; for other languages, it reads the English profile and applies the same intent in the target language.
 
 ## Requirements
 

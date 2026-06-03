@@ -88,7 +88,7 @@ If the user passed a topic argument (`/flight:help workflow`), jump to that sect
 >     ├── decisions/                   ← important choices you asked me to track
 >     ├── memos/                       ← user memos filed via /flight:memo only (open-task notes)
 >     ├── archive/                     ← /flight:archive and /flight:cleanup move stuff here
->     ├── stilwerk/                    ← the professional-voice style profiles (read-only)
+>     ├── stilwerk/                    ← style profiles (professional-voice for documents, chat-voice for chat; read-only)
 >     └── .flight-setup                ← marker showing when setup ran
 > ```
 >
@@ -100,15 +100,15 @@ If the user passed a topic argument (`/flight:help workflow`), jump to that sect
 
 ## Topic: language
 
-> **Default is English.** If you want to work in another language, just tell me — I will ask whether to switch the project's language permanently (recorded in CLAUDE.md). Once set, I respond in that language and apply the matching professional-voice style profile.
+> **Default is English.** If you want to work in another language, just tell me — I will ask whether to switch the project's language permanently (recorded in CLAUDE.md). Once set, I respond in that language and apply the matching style profiles: a chat-voice profile for conversational replies and a professional-voice profile for documents.
 >
-> Supported style profiles ship with flight: English (`professional-voice-en.yaml`) and German (`professional-voice-de.yaml`). For other languages I read the English profile, understand the intent, and apply it in your language.
+> Two profile pairs ship with flight, for English and German: professional-voice (`professional-voice-en.yaml`, `professional-voice-de.yaml`) for documents, and chat-voice (`chat-voice-en.yaml`, `chat-voice-de.yaml`) for chat. For other languages I read the English profile, understand the intent, and apply it in your language.
 
 ## Topic: style
 
-> **For prose generation, I apply the professional-voice style profile** at `flight-workbench/stilwerk/professional-voice-<LANG>.yaml`. This is a stylometric guide — it shapes vocabulary, sentence rhythm, and register so the output reads professionally and respects the reader's time.
+> **I apply one of two style profiles, depending on what I am producing.** For chat and conversational replies, I apply the chat-voice profile at `flight-workbench/stilwerk/chat-voice-<LANG>.yaml` — it keeps replies lean, direct, and to the point. For polished documents, I apply the professional-voice profile at `flight-workbench/stilwerk/professional-voice-<LANG>.yaml` — it shapes vocabulary, sentence rhythm, and register so the output reads professionally and respects your time.
 >
-> You usually do not need to know more. If you want short conversational chat, just ask in chat. If you want a polished document, mention "draft a one-page memo" or "produce a clean summary" and the style profile applies.
+> You usually do not need to know more. Just chat normally for a quick reply; mention "draft a one-page memo" or "produce a clean summary" when you want a polished document.
 
 ## Topic: tasks
 

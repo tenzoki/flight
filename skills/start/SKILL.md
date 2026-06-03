@@ -19,7 +19,7 @@ Report the path to the user. The workbench will be created at `./flight-workbenc
 
 ## Step 1 — Locate the flight plugin's source files
 
-This skill needs to copy two files from the plugin's `stilwerk/` directory into the project's workbench: `professional-voice-en.yaml` and `professional-voice-de.yaml`.
+This skill needs to copy the style profiles from the plugin's `stilwerk/` directory into the project's workbench — four files: the professional-voice pair (`professional-voice-en.yaml`, `professional-voice-de.yaml`) and the chat-voice pair (`chat-voice-en.yaml`, `chat-voice-de.yaml`).
 
 The plugin's base directory for this skill is provided by Claude Code at invocation time (look for the line "Base directory for this skill:" in this prompt's context). From that path, the plugin root is `dirname(dirname(base_dir))` — strip the trailing `/skills/start`. The stilwerk source files are at `<plugin-root>/stilwerk/`.
 
@@ -35,14 +35,16 @@ mkdir -p ./flight-workbench/history ./flight-workbench/decisions ./flight-workbe
 
 ## Step 3 — Install the style profiles
 
-Copy both YAML profiles from `<plugin-root>/stilwerk/` into `./flight-workbench/stilwerk/`. Always overwrite — the source-of-truth is the plugin version, so a refresh on /flight:start re-installs the latest. Use:
+Copy all four YAML profiles from `<plugin-root>/stilwerk/` into `./flight-workbench/stilwerk/`. Always overwrite — the source-of-truth is the plugin version, so a refresh on /flight:start re-installs the latest. Use:
 
 ```bash
 cp "<plugin-root>/stilwerk/professional-voice-en.yaml" ./flight-workbench/stilwerk/
 cp "<plugin-root>/stilwerk/professional-voice-de.yaml" ./flight-workbench/stilwerk/
+cp "<plugin-root>/stilwerk/chat-voice-en.yaml" ./flight-workbench/stilwerk/
+cp "<plugin-root>/stilwerk/chat-voice-de.yaml" ./flight-workbench/stilwerk/
 ```
 
-Replace `<plugin-root>` with the path resolved in Step 1. After the copy, list `./flight-workbench/stilwerk/` and confirm both files are present.
+Replace `<plugin-root>` with the path resolved in Step 1. After the copy, list `./flight-workbench/stilwerk/` and confirm all four profiles are present.
 
 ## Step 4 — Write the setup marker
 
