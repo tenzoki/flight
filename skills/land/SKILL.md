@@ -51,7 +51,7 @@ For each "Yes", append the task to `flight-workbench/memos/tasks-$USER.md` using
 
 ## Step 3 — Write the session summary to history
 
-Append a `## Summary` section to the active session history file:
+Append a `## Summary` section to the active session history file. Get the `**Ended:**` time from `date +"%Y-%m-%d %H:%M"` — run it in the shell and use the output verbatim; never write a time from your own sense of "now" (your clock is UTC and would be off by the local offset).
 
 ```markdown
 ---

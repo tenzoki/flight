@@ -67,7 +67,7 @@ Read `./flight-workbench/memos/memos-$USER.md`. If it does not exist, create it 
 
 Append the memo as a single dated `##` section at the end of the file (leave one blank line before it). Capture the user's content **verbatim** — do not rewrite it in your own words.
 
-Timestamp: `date +"%Y-%m-%d %H:%M"`.
+Timestamp: `date +"%Y-%m-%d %H:%M"`. Run it in the shell and use the output verbatim — never type a time from your own sense of "now" (your clock is UTC and would be off by the local offset).
 
 ```markdown
 ## YYYY-MM-DD HH:MM — <topic>

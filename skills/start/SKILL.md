@@ -107,6 +107,8 @@ cat > "./flight-workbench/history/${TS}-session.md" <<EOF
 EOF
 ```
 
+**Run the bash block above as-is.** Both `${TS}` (the filename prefix) and the `**Started:**` line must come from the shell's `date` output — do not construct the filename or the start time from a timestamp you generated yourself. Your internal clock is UTC and would put the file ~2 hours behind local time (in Central European Summer Time).
+
 This file will be appended to throughout the session and finalized at `/flight:land`.
 
 ## Step 7 — Gather session-start context

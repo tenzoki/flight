@@ -66,7 +66,7 @@ If the candidate list is empty:
 
 ## Step 4 — Generate the archive slug
 
-Build a short kebab-case slug describing the scope (`older-than-14d`, `mid-tier`, `closed-decisions`, `pre-april-2026`, etc.). Get the timestamp: `date +"${FLIGHT_FILE_PREFIX:-%Y-%m-%d_%H-%M}"` (env var `FLIGHT_FILE_PREFIX` overrides the default).
+Build a short kebab-case slug describing the scope (`older-than-14d`, `mid-tier`, `closed-decisions`, `pre-april-2026`, etc.). Get the timestamp: `date +"${FLIGHT_FILE_PREFIX:-%Y-%m-%d_%H-%M}"` (env var `FLIGHT_FILE_PREFIX` overrides the default). Run it in the shell and use the output verbatim — never a time from your own sense of "now" (your clock is UTC and would be off by the local offset).
 
 Create the archive bundle directory:
 

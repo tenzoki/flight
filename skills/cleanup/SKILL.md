@@ -58,7 +58,7 @@ For redundant groups, present the group together and ask which to keep (if any) 
 
 ## Step 5 — Write the archive file
 
-Get timestamp: `date +"${FLIGHT_FILE_PREFIX:-%Y-%m-%d_%H-%M}"` (env var overrides default; default renders as `YYYY-MM-DD_HH-MM`). Create:
+Get timestamp: `date +"${FLIGHT_FILE_PREFIX:-%Y-%m-%d_%H-%M}"` (env var overrides default; default renders as `YYYY-MM-DD_HH-MM`). Run it in the shell and use the output verbatim — never a time from your own sense of "now" (your clock is UTC and would be off by the local offset). Create:
 
 ```
 ./flight-workbench/archive/<prefix>-cleanup-strippings.md
