@@ -65,7 +65,7 @@ your-project/
 
 Your deliverables — analyses, summaries, drafts, slide decks, anything flight produces for you — sit at the project root next to `CLAUDE.md`, easy to find. `flight-workbench/` is internal scaffolding for flight's own tracking; you do not need to look in there day-to-day.
 
-Every file flight creates carries a date-time prefix: `<prefix>-<name>.<ext>`. The default prefix renders as `YYMMDD-HHMM` (e.g. `260528-0450`). You can override it by setting the environment variable `FLIGHT_FILE_PREFIX` to a `date(1)` strftime string — e.g. `export FLIGHT_FILE_PREFIX='%Y%m%d-%H%M%S'` for full-year + seconds precision. Default keeps existing projects working; change it only on a clean project, or you will get inconsistent sort order.
+Every file flight creates carries a date-time prefix: `<prefix>-<name>.<ext>`. The default prefix renders as `YYYY-MM-DD_HH-MM` (e.g. `2026-05-28_04-50`). You can override it by setting the environment variable `FLIGHT_FILE_PREFIX` to a `date(1)` strftime string — e.g. `export FLIGHT_FILE_PREFIX='%Y%m%d-%H%M%S'` for full-year + seconds precision. Default keeps existing projects working; change it only on a clean project, or you will get inconsistent sort order.
 
 ## Language
 

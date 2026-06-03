@@ -64,10 +64,10 @@ Check if `./CLAUDE.md` exists.
 
 ## Step 6 — Create today's session history file
 
-Get the current timestamp using the configurable prefix format (env var `FLIGHT_FILE_PREFIX`, defaulting to `%y%m%d-%H%M`). Create the session history file:
+Get the current timestamp using the configurable prefix format (env var `FLIGHT_FILE_PREFIX`, defaulting to `%Y-%m-%d_%H-%M`). Create the session history file:
 
 ```bash
-TS="$(date +"${FLIGHT_FILE_PREFIX:-%y%m%d-%H%M}")"
+TS="$(date +"${FLIGHT_FILE_PREFIX:-%Y-%m-%d_%H-%M}")"
 cat > "./flight-workbench/history/${TS}-session.md" <<EOF
 # Session ${TS}
 
