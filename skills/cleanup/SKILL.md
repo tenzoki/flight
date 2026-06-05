@@ -1,5 +1,5 @@
 ---
-description: Clean up flight's open-task list in flight-workbench/memos/tasks-<user>.md. Removes tasks the user has marked closed, and for tasks that look obviously outdated or redundant, asks the user whether to archive, delete, or keep each. Strippings go to flight-workbench/archive/<prefix>-cleanup-strippings.md so nothing is lost. Run when the open-task list has grown long or stale; complements /flight:land (which is broader: session close + history finalization). Does not touch CLAUDE.md.
+description: Clean up flight's open-task list in flight-workbench/memos/tasks-<user>.md. Removes tasks the user has marked closed, and for tasks that look obviously outdated or redundant, asks the user whether to archive, delete, or keep each. Strippings go to flight-workbench/archive/<prefix>-cleanup-strippings.md so nothing is lost. Run when the open-task list has grown long or stale; complements /flight:land (which is broader — session close plus history finalization). Does not touch CLAUDE.md.
 allowed-tools: [Read, Write, Edit, Bash, AskUserQuestion]
 ---
 
