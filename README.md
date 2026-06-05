@@ -20,18 +20,36 @@ flight is a flightweight cousin of [fusion](https://github.com/tenzoki/fusion). 
 - Not [fusion](https://github.com/tenzoki/fusion). No orchestrator, no Turn loops, no Coherence checks, no compliance guard, no sub-agent dispatch.
 - Not silent. Flight asks before destructive operations.
 
-## Quick start
+## Quick start (recommended — one line, no git)
+
+In your terminal:
 
 ```bash
-# In Claude Code, add the marketplace and install flight
-/plugin marketplace add tenzoki/claude-plugins
-/plugin install flight@tenzoki-plugins
-
-# In any project folder where you want to work
-/flight:start
+curl -fsSL https://raw.githubusercontent.com/tenzoki/flight/main/install.sh | bash
 ```
 
-That's it. `/flight:start` creates a `flight-workbench/` folder, copies the style profiles, initializes `CLAUDE.md` (if missing), and tells you what's on your plate.
+This downloads flight over plain HTTPS into `~/.flight` and installs a `flight`
+launcher. No git, no SSH, no Claude Code marketplace. Then, in any project folder:
+
+```bash
+flight          # starts Claude Code with the pilot agent loaded
+/flight:start   # sets up this project's workbench
+```
+
+- **Update:** `flight --update` (or re-run the one-liner above).
+- **Uninstall:** `flight --uninstall`.
+- **Where it lives:** `flight --where` (prints the install dir).
+
+`/flight:start` creates a `flight-workbench/` folder, copies the style profiles, initializes `CLAUDE.md` (if missing), and tells you what's on your plate.
+
+### Alternative: Claude Code marketplace
+
+If you prefer the built-in plugin system (note: it uses git, which can fail when your git is configured for SSH):
+
+```bash
+/plugin marketplace add tenzoki/claude-plugins
+/plugin install flight@tenzoki-plugins
+```
 
 After that, just talk. When done, `/flight:land` closes the session cleanly.
 
