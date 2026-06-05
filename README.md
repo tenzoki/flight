@@ -42,6 +42,25 @@ flight          # starts Claude Code with the pilot agent loaded
 
 `/flight:start` creates a `flight-workbench/` folder, copies the style profiles, initializes `CLAUDE.md` (if missing), and tells you what's on your plate.
 
+### Where flight installs
+
+The one-line installer writes to exactly two places — both in your home folder, nothing system-wide and nothing inside Claude Code's plugin cache:
+
+```
+~/.local/bin/flight     the `flight` command (a thin launcher script)
+~/.flight/              the plugin files: .claude-plugin/, agents/, skills/,
+                        templates/, stilwerk/, README, LICENSE
+```
+
+The launcher is one line — `claude --plugin-dir ~/.flight --agent flight:pilot "$@"` — so every run loads the plugin straight from `~/.flight`. That is why update and uninstall are reliable: there is no cache to get out of sync. `flight --where` prints the plugin path any time.
+
+Both locations are overridable with environment variables before installing:
+
+- `FLIGHT_HOME` — where the plugin files go (default `~/.flight`)
+- `FLIGHT_BIN` — where the `flight` launcher goes (default `~/.local/bin`)
+
+To remove flight completely: `flight --uninstall` (which is just `rm -rf ~/.flight` plus removing the launcher). Claude Code's own `~/.claude/` directory is never touched.
+
 ### Alternative: Claude Code marketplace
 
 If you prefer the built-in plugin system (note: it uses git, which can fail when your git is configured for SSH):
