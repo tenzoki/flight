@@ -79,6 +79,7 @@ After that, just talk. When done, `/flight:land` closes the session cleanly.
 | `/flight:start` | Set up or refresh the workbench, read CLAUDE.md, show open tasks |
 | `/flight:land` | Close the session — summary to history, carry forward unresolved tasks |
 | `/flight:memo <text>` | Capture an open task (or a longer memo) |
+| `/flight:log-activity` | Scan project activity into `activity-log-<user>.md` (reuses fusion's log if present) |
 | `/flight:cleanup` | Strip closed/stale tasks from your task list, archive the strippings |
 | `/flight:archive` | Move old workbench files into a timestamped archive bundle |
 | `/flight:unlock` | Write a permissive permissions file so future sessions skip approval prompts |

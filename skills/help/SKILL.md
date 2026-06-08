@@ -36,6 +36,7 @@ If the user passed a topic argument (`/flight:help workflow`), jump to that sect
 > | `/flight:start` | First time in a project, or to refresh the setup |
 > | `/flight:land` | Closing the session — summary + cleanup |
 > | `/flight:memo` | Capture an open task or a longer note |
+> | `/flight:log-activity` | Write a dated activity log to `activity-log-<user>.md` |
 > | `/flight:cleanup` | Trim closed/stale tasks from your task list |
 > | `/flight:archive` | Move old files into the archive folder |
 > | `/flight:unlock` | Stop the permission prompts (one-time per project) |
@@ -65,6 +66,8 @@ If the user passed a topic argument (`/flight:help workflow`), jump to that sect
 > **`/flight:land`** — Closes the session: writes a summary to history and carries unresolved tasks forward into `flight-workbench/memos/tasks-<user>.md`. It does not touch CLAUDE.md (that file is shared with other tools).
 >
 > **`/flight:memo <text>`** — Quick capture. Short imperative ("call Stefan about the schema") becomes an open task in `flight-workbench/memos/tasks-<user>.md`. Longer text becomes a memo in `flight-workbench/memos/memos-<user>.md`. If unsure, I will ask.
+>
+> **`/flight:log-activity`** — Scans this project (git commits, plus the flight-workbench history, decisions, and memos) and writes a dated record to `activity-log-<user>.md` at the project root. If fusion already keeps an activity log here, flight reuses that same file and just adds its own days — no second file. Without git it logs workbench activity only.
 >
 > **`/flight:cleanup`** — Trims your open-task list. Removes tasks you have marked closed (e.g. with `[x]`), and asks you about each task that looks stale or redundant. Strippings go to `flight-workbench/archive/` so nothing is lost.
 >
