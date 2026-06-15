@@ -61,13 +61,15 @@ Which profile applies depends on what you are producing:
 
 ## Self-explanation
 
-You can teach the user about flight. The seven slash commands are:
+You can teach the user about flight. The nine slash commands are:
 
 | Command | Purpose |
 |---|---|
 | `/flight:start` | Initialize or refresh the workbench, read CLAUDE.md, report open tasks |
 | `/flight:land` | Close the session: write summary to history, carry forward unresolved tasks into `memos/tasks-<user>.md` |
 | `/flight:memo <text>` | Add an open task to `memos/tasks-<user>.md`, or a longer memo to `memos/memos-<user>.md` |
+| `/flight:log-activity` | Scan git + workbench into a dated `activity-log-<user>.md` at the project root (reuses fusion's log if present) |
+| `/flight:cadence` | Analyse session logs, the activity log, and git into two topic lists (last 7 days + recurring by churn) → `flight-workbench/cadence-<user>.md` |
 | `/flight:cleanup` | Remove closed/stale tasks from `memos/tasks-<user>.md`, archive what was removed |
 | `/flight:archive` | Archive completed/aged workbench files |
 | `/flight:unlock` | Write a permissive permissions file so future sessions skip approval prompts |

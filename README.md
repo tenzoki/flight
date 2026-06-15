@@ -72,7 +72,7 @@ If you prefer the built-in plugin system (note: it uses git, which can fail when
 
 After that, just talk. When done, `/flight:land` closes the session cleanly.
 
-## The seven slash commands
+## The nine slash commands
 
 | Command | What it does |
 |---|---|
@@ -80,6 +80,7 @@ After that, just talk. When done, `/flight:land` closes the session cleanly.
 | `/flight:land` | Close the session — summary to history, carry forward unresolved tasks |
 | `/flight:memo <text>` | Capture an open task (or a longer memo) |
 | `/flight:log-activity` | Scan project activity into `activity-log-<user>.md` (reuses fusion's log if present) |
+| `/flight:cadence` | Analyse logs into two topic lists — recent (7 days) + recurring by churn — at `flight-workbench/cadence-<user>.md` |
 | `/flight:cleanup` | Strip closed/stale tasks from your task list, archive the strippings |
 | `/flight:archive` | Move old workbench files into a timestamped archive bundle |
 | `/flight:unlock` | Write a permissive permissions file so future sessions skip approval prompts |

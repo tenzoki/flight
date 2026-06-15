@@ -37,6 +37,7 @@ If the user passed a topic argument (`/flight:help workflow`), jump to that sect
 > | `/flight:land` | Closing the session — summary + cleanup |
 > | `/flight:memo` | Capture an open task or a longer note |
 > | `/flight:log-activity` | Write a dated activity log to `activity-log-<user>.md` |
+> | `/flight:cadence` | See your work cadence — recent topics + recurring themes |
 > | `/flight:cleanup` | Trim closed/stale tasks from your task list |
 > | `/flight:archive` | Move old files into the archive folder |
 > | `/flight:unlock` | Stop the permission prompts (one-time per project) |
@@ -59,7 +60,7 @@ If the user passed a topic argument (`/flight:help workflow`), jump to that sect
 
 ## Topic: commands
 
-> **The seven slash commands:**
+> **The nine slash commands:**
 >
 > **`/flight:start`** — Sets up the workbench (creates `flight-workbench/` and copies the style profiles) and reads CLAUDE.md. Safe to re-run any time; it never overwrites your content.
 >
@@ -68,6 +69,8 @@ If the user passed a topic argument (`/flight:help workflow`), jump to that sect
 > **`/flight:memo <text>`** — Quick capture. Short imperative ("call Stefan about the schema") becomes an open task in `flight-workbench/memos/tasks-<user>.md`. Longer text becomes a memo in `flight-workbench/memos/memos-<user>.md`. If unsure, I will ask.
 >
 > **`/flight:log-activity`** — Scans this project (git commits, plus the flight-workbench history, decisions, and memos) and writes a dated record to `activity-log-<user>.md` at the project root. If fusion already keeps an activity log here, flight reuses that same file and just adds its own days — no second file. Without git it logs workbench activity only.
+>
+> **`/flight:cadence`** — Reads your session logs (the flight, fusion, and scout workbenches, whichever exist), the activity log, and git, then writes two topic lists to `flight-workbench/cadence-<user>.md`: the topics of the last 7 days, and the recurring themes ranked by how many sessions they keep reappearing in. A higher-level digest on top of `/flight:log-activity`.
 >
 > **`/flight:cleanup`** — Trims your open-task list. Removes tasks you have marked closed (e.g. with `[x]`), and asks you about each task that looks stale or redundant. Strippings go to `flight-workbench/archive/` so nothing is lost.
 >
