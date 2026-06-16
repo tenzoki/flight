@@ -40,6 +40,38 @@ flight          # starts Claude Code with the pilot agent loaded
 - **Uninstall:** `flight --uninstall`.
 - **Where it lives:** `flight --where` (prints the install dir).
 
+### Quick start (Windows)
+
+This one command works pasted into either the Command Prompt (cmd.exe) **or** PowerShell:
+
+```
+powershell -NoProfile -ExecutionPolicy Bypass -Command "irm https://raw.githubusercontent.com/tenzoki/flight/main/install.ps1 | iex"
+```
+
+Alternatively, if you are already inside a PowerShell prompt, the short form also works:
+
+```powershell
+irm https://raw.githubusercontent.com/tenzoki/flight/main/install.ps1 | iex
+```
+
+If you would rather not paste a command, download `install.cmd` from the repo and
+double-click it — it runs the same one-liner for you.
+
+This downloads flight over plain HTTPS into `%USERPROFILE%\.flight` and installs a
+`flight` launcher. Both forms run in memory, so they are not blocked by the default
+PowerShell ExecutionPolicy that gates `.ps1` files on disk (`-ExecutionPolicy Bypass`
+and the in-memory `iex` each sidestep the on-disk `.ps1` policy). Then, in any
+project folder:
+
+```powershell
+flight          # starts Claude Code with the pilot agent loaded
+/flight:start   # sets up this project's workbench
+```
+
+- **Update:** `flight --update` (or re-run the one-liner above).
+- **Uninstall:** `flight --uninstall`.
+- **Where it lives:** `flight --where` (prints the install dir).
+
 `/flight:start` creates a `flight-workbench/` folder, copies the style profiles, initializes `CLAUDE.md` (if missing), and tells you what's on your plate.
 
 ### Where flight installs
@@ -52,12 +84,21 @@ The one-line installer writes to exactly two places — both in your home folder
                         templates/, stilwerk/, README, LICENSE
 ```
 
+On Windows the two places are:
+
+```
+%USERPROFILE%\.local\bin\flight.cmd   the `flight` command (launcher)
+%USERPROFILE%\.flight\                the plugin files
+```
+
 The launcher is one line — `claude --plugin-dir ~/.flight --agent flight:pilot "$@"` — so every run loads the plugin straight from `~/.flight`. That is why update and uninstall are reliable: there is no cache to get out of sync. `flight --where` prints the plugin path any time.
 
 Both locations are overridable with environment variables before installing:
 
 - `FLIGHT_HOME` — where the plugin files go (default `~/.flight`)
 - `FLIGHT_BIN` — where the `flight` launcher goes (default `~/.local/bin`)
+
+The same `FLIGHT_HOME` / `FLIGHT_BIN` overrides work on Windows (set them before running the PowerShell one-liner; the defaults map to `%USERPROFILE%\.flight` and `%USERPROFILE%\.local\bin`).
 
 To remove flight completely: `flight --uninstall` (which is just `rm -rf ~/.flight` plus removing the launcher). Claude Code's own `~/.claude/` directory is never touched.
 
