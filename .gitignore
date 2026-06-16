@@ -7,6 +7,9 @@ fusion-workbench/
 # Stray local fusion tooling copy that can land at the repo root during dev.
 .fusion/
 
+# Per-user activity log is a personal runtime artifact, not plugin source.
+activity-log-*.md
+
 # IDE / OS noise
 .DS_Store
 .idea/
