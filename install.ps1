@@ -47,6 +47,15 @@ Install Claude Code first, then re-run this installer:
 "@
 }
 
+if (-not (Get-Command git -ErrorAction SilentlyContinue)) {
+  Die @"
+Git for Windows ('git') was not found on your PATH.
+flight needs Git. Install it first, then re-run this installer:
+  winget install --id Git.Git -e --source winget
+  or download from: https://git-scm.com/download/win
+"@
+}
+
 # --- 2. Download + extract over HTTPS (no git, no SSH) ------------------------
 Say "Downloading flight ($Ref) over HTTPS..."
 $Tmp = Join-Path $env:TEMP ("flight-" + [System.IO.Path]::GetRandomFileName())
