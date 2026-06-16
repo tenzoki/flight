@@ -4,6 +4,9 @@
 flight-workbench/
 fusion-workbench/
 
+# Stray local fusion tooling copy that can land at the repo root during dev.
+.fusion/
+
 # IDE / OS noise
 .DS_Store
 .idea/
