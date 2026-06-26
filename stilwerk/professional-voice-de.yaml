@@ -57,7 +57,12 @@ whitelist:
       schafft: "TOGAF-Capability-Modell" statt "Framework"; "Data
       Lineage" statt "Datenfluss"; "Entscheidungsrechte" statt
       "Verantwortlichkeiten". Begriffe bei gemischtem Publikum bei
-      erster Verwendung definieren.
+      erster Verwendung definieren. Jedes Fachwort, Akronym oder jeden
+      internen Namen, den der Leser womöglich nicht kennt (einen
+      Branchenbegriff, einen Produktnamen, eine interne Abkürzung), beim
+      ersten Auftreten in drei bis fünf Wörtern erklären, auch vor
+      Fachpublikum, statt vorauszusetzen, dass der Leser ihn präsent
+      hält.
 
   - id: L06
     name: "Deutsche Kontraktionen"
@@ -77,6 +82,21 @@ whitelist:
       ("Sie könnten möglicherweise erwägen, eventuell zu prüfen").
 
 blacklist:
+  - id: K01
+    name: "Klauselketten und Kompression"
+    instruction: |
+      Nicht mehrere Gedanken in eine atemlose Klauselkette pressen. Ein
+      Hauptgedanke pro Satz; jeder Hauptpunkt ein vollständiger Satz mit
+      Subjekt und finitem Verb. Verblose Fragmente ("Margen runter,
+      Abwanderung hoch") sind keine Sätze. Die Kompression (Klausel,
+      Einschub, Klausel, zusammengepresster Grund, alles in einem
+      Atemzug) ist das Hauptsymptom unleserlicher Beratungsprosa. Lieber
+      zwei klare Sätze als einen überladenen. Gilt für Fachpublikum
+      genauso: Dichte ersetzt keine Klarheit.
+    examples:
+      - "Der Pilot funktioniert, skaliert aber nicht, die Akzeptanz ist hoch, die Stückkosten bleiben schlecht, weil die Onboarding-Kosten nie sanken."
+      - "Den Anmeldeprozess umbauen (Testschritt streichen, beide Formulare zusammenlegen, Abrechnung verschieben), die bestehende E-Mail-Strecke wiederverwenden, vor dem nächsten Launch."
+
   - id: D01
     name: "Übergangsdichte"
     max: 0.3
@@ -121,8 +141,8 @@ blacklist:
       sind ein starkes KI-Signal und untergraben die Gravität
       formaler Prosa.
     examples:
-      - "der Befund – der vergangene Woche entstand – bestätigt sich"
-      - "drei Optionen – schnell, günstig, gut – davon zwei"
+      - "der Launch lief gut, brachte aber keine Conversion – Anmeldungen stark, bezahlte Upgrades schwach"
+      - "die Lösung ist nicht 'mehr Marketing', sondern den Checkout vor dem nächsten Push zu vereinfachen"
 
   - id: AI03
     name: "Dramatische Selbstverständlichkeiten"

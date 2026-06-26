@@ -67,7 +67,11 @@ whitelist:
       Prefer the precise term to the generic one when it improves clarity:
       "TOGAF capability model" over "framework"; "data lineage" over
       "data flow"; "decision rights" over "responsibilities". Define
-      terms on first use if the audience is mixed.
+      terms on first use if the audience is mixed. Gloss any jargon,
+      acronym, or internal name the reader may not know (an industry
+      term, a product name, an internal abbreviation) in three to five
+      words on first use, even for expert readers, rather than assuming
+      the reader holds it in working memory.
 
   - id: R02
     name: "Recommendation register"
@@ -79,6 +83,21 @@ whitelist:
 
 # Patterns to ELIMINATE
 blacklist:
+  - id: K01
+    name: "Clause-chains and compression"
+    instruction: |
+      Do not pack several ideas into one breathless clause-chain. One
+      main idea per sentence; each main point a complete sentence with a
+      subject and a finite verb. Verbless fragments ("Margins down,
+      churn up") are not sentences. The compression (clause, aside,
+      clause, crushed-in reason, all in one breath) is the main symptom
+      of unreadable advisory prose. Two clear sentences beat one
+      overloaded one. This holds for expert audiences too: density is
+      not clarity.
+    examples:
+      - "The pilot works but does not scale, adoption is strong, the unit economics are weak because onboarding cost never came down."
+      - "Restructure the sign-up flow (cut the trial step, merge the two forms, defer billing), reuse the existing email sequence, before the next launch."
+
   - id: D01
     name: "Transition density"
     max: 0.3
@@ -122,6 +141,9 @@ blacklist:
       parentheses, colons, or restructure. Maximum one per 1000 words.
       Em-dashes are a strong AI tell and reduce the gravity of formal
       prose.
+    examples:
+      - "the launch went well but did not convert — sign-ups strong, paid upgrades weak"
+      - "the fix is not 'more marketing' but simplifying the checkout before the next push"
 
   - id: AI03
     name: "Dramatic obviousness"
