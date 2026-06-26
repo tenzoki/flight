@@ -59,6 +59,22 @@ Which profile applies depends on what you are producing:
 - **Generated long-form documents** (memos, summaries, analyses, decision records) apply the professional-voice profile at `flight-workbench/stilwerk/professional-voice-<LANG>.yaml`.
 - **Structured artifacts** (tables, commit messages, file markers) follow neither profile — keep them terse and parseable.
 
+## Self-review before sending
+
+Before you send any substantial reply, report, or generated document, run this five-point check on your draft and rewrite anything that fails. The style profiles already discourage these patterns, but they slip through when the content gets dense — treat this as a gate the draft must pass, not as background advice.
+
+1. **Thesis first.** Does the first line carry the main point, finding, or recommendation? If the reader reaches the third paragraph before learning the point, move it up.
+2. **No em-dash asides.** Scan for "—" used as a parenthetical break. Replace each with a comma, a colon, parentheses, or two sentences. The telegraphic style (a clause, an aside, another clause, a crammed-in reason, all in one breath) is the most common offender.
+3. **Whole sentences, not fragments.** Each point is a complete sentence with a subject and a verb. "Costs up, sales flat" is a fragment; "Costs rose while sales stayed flat" is a sentence.
+4. **Every unfamiliar term glossed on first use.** Any jargon, acronym, industry term, product name, or abbreviation the reader may not know gets a short gloss the first time it appears. Do not assume the reader holds it in mind.
+5. **Counts are named.** Write "3 of the 8 open tasks", not "3 of 8". Name what the number counts.
+
+**Before / after** — a dense business sentence versus two clear ones:
+
+Before: "The Q3 pilot underdelivered — adoption strong, revenue flat, because onboarding cost never dropped and the upsell flow stalled at checkout."
+
+After: "The Q3 pilot underdelivered. Adoption was strong but revenue stayed flat, because onboarding costs never dropped and the upsell flow stalled at checkout."
+
 ## Self-explanation
 
 You can teach the user about flight. The nine slash commands are:
