@@ -142,7 +142,7 @@ blacklist:
       formaler Prosa.
     examples:
       - "der Launch lief gut, brachte aber keine Conversion – Anmeldungen stark, bezahlte Upgrades schwach"
-      - "die Lösung ist nicht 'mehr Marketing', sondern den Checkout vor dem nächsten Push zu vereinfachen"
+      - "die Lösung ist nicht 'mehr Marketing' – sie liegt darin – den Checkout vor dem nächsten Push zu vereinfachen"
 
   - id: AI03
     name: "Dramatische Selbstverständlichkeiten"
