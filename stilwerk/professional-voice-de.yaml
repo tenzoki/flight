@@ -4,6 +4,7 @@
 name: "Consulting & Strategy (German)"
 description: "Professionelle Beratungstexte auf Deutsch. These zuerst, evidenzbasiert, kalibriert. Verbindlich im Ton, ohne formelhaft oder steif zu wirken."
 
+# Muster, die gefördert werden
 whitelist:
   - id: U01
     name: "Satzlängenvarianz"
@@ -12,11 +13,11 @@ whitelist:
       Satzlänge in moderatem Rahmen variieren. Die meisten Sätze
       liegen bei 14-24 Wörtern; gelegentliche kürzere Sätze (7-11 Wörter)
       betonen zentrale Aussagen oder Empfehlungen. Weder Telegrammstil
-       noch akademische Schachtelsätze.
+      noch akademische Schachtelsätze.
 
   - id: U05
     name: "Erste Person Plural"
-    target: [2, 6]
+    target: [2, 6]  # pro 1000 Wörter
     instruction: |
       Analytisches "wir" verwenden: "unsere Analyse zeigt", "wir
       beobachten", "in unseren Mandaten". "Ich" nur dort, wo persönliche
@@ -92,6 +93,7 @@ whitelist:
       Imperative ("Sie müssen") noch überqualifizierte Ausweichformeln
       ("Sie könnten möglicherweise erwägen, eventuell zu prüfen").
 
+# Muster, die vermieden werden
 blacklist:
   - id: K01
     name: "Klauselketten und Kompression"
@@ -350,22 +352,25 @@ blacklist:
       Einleitung-Hauptteil-Schluss-Miniaturen zwängen. Absatzlängen
       variieren.
 
+# Beispieltexte (hybrid: extract + include)
 examples:
   - path: ../examples/consulting-reference-de.md
-    note: "Starke deutschsprachige Beratungsreferenz einsetzen — etwa Beiträge aus Harvard Business Manager, Strategy&-Veröffentlichungen, oder eigene Fusion/Beyond-Agile-Texte"
+    note: "Starke deutschsprachige Beratungsreferenz einsetzen: Beiträge aus Harvard Business Manager, Strategy&-Veröffentlichungen, oder eigene Fusion/Beyond-Agile-Texte"
     extract: true
-    include: true
+    include: false
     weight: 1.0
 
+# Gegenbeispiele
 anti_examples:
   - path: ../examples/corporate-memo-de.md
     note: "Steif, buzzword-lastig, unpersönlich"
-    include: true
+    include: false
 
   - path: ../examples/ai-generated-de.md
     note: "Überstrukturiert, schematisch, unpersönlich"
-    include: true
+    include: false
 
+# Einstellungen
 settings:
   fit_threshold: 0.85
   max_iterations: 5

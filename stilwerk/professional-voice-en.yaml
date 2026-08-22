@@ -288,18 +288,18 @@ examples:
   - path: ../examples/consulting-reference.md
     note: "Swap in a strong advisory reference: HBR analytical pieces, McKinsey Quarterly, BCG long-form insights, or your own published Fusion/Beyond Agile material"
     extract: true
-    include: true
+    include: false
     weight: 1.0
 
 # Anti-examples
 anti_examples:
   - path: ../examples/corporate-memo.md
     note: "Stiff, buzzword-heavy, impersonal"
-    include: true
+    include: false
 
   - path: ../examples/ai-generated.md
     note: "Over-structured, formulaic, impersonal"
-    include: true
+    include: false
 
 # Settings
 settings:
