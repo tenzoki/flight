@@ -60,7 +60,7 @@ If the user passed a topic argument (`/flight:help workflow`), jump to that sect
 
 ## Topic: commands
 
-> **The nine slash commands:**
+> **The slash commands:**
 >
 > **`/flight:start`** — Sets up the workbench (creates `flight-workbench/` and copies the style profiles) and reads CLAUDE.md. Safe to re-run any time; it never overwrites your content.
 >
@@ -114,7 +114,7 @@ If the user passed a topic argument (`/flight:help workflow`), jump to that sect
 
 > **I apply one of two style profiles, depending on what I am producing.** For chat and conversational replies, I apply the chat-voice profile at `flight-workbench/stilwerk/chat-voice-<LANG>.yaml` — it keeps replies lean, direct, and to the point. For polished documents, I apply the professional-voice profile at `flight-workbench/stilwerk/professional-voice-<LANG>.yaml` — it shapes vocabulary, sentence rhythm, and register so the output reads professionally and respects your time.
 >
-> **For a risk analysis, a feasibility analysis, or decision support I work to a stricter shape.** I name the largest consequences first, measured by money, people, time, and whether the step can be undone, and before I finish I argue the case against my own conclusion and say which parts of it hold up. Say "quick" if you want the short version: every part stays in, each one held to a single sentence, and the case against my own conclusion is never what goes.
+> **For a risk analysis, a feasibility analysis, or decision support I work to a stricter shape.** I name the largest consequences first, measured by money, people, time, and whether the step can be undone, and before I finish I argue the case against my own conclusion and say which parts of it hold up. Say "quick" if you want the short version: every part stays in, each one held to a single sentence, and the case against my own conclusion is never what goes. I do not always recognise one of these three from the way a request is worded. If you want the stricter shape and I have not offered it, say "treat this as a risk analysis" (or as a feasibility analysis, or as decision support) and I will work to that shape.
 >
 > You usually do not need to know more. Just chat normally for a quick reply; mention "draft a one-page memo" or "produce a clean summary" when you want a polished document.
 
