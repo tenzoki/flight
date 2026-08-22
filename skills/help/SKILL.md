@@ -114,6 +114,8 @@ If the user passed a topic argument (`/flight:help workflow`), jump to that sect
 
 > **I apply one of two style profiles, depending on what I am producing.** For chat and conversational replies, I apply the chat-voice profile at `flight-workbench/stilwerk/chat-voice-<LANG>.yaml` — it keeps replies lean, direct, and to the point. For polished documents, I apply the professional-voice profile at `flight-workbench/stilwerk/professional-voice-<LANG>.yaml` — it shapes vocabulary, sentence rhythm, and register so the output reads professionally and respects your time.
 >
+> **For a risk, feasibility, or decision analysis I work to a stricter shape.** I name the largest consequences first, measured by money, people, time, and whether the step can be undone, and before I finish I argue the case against my own conclusion and say which parts of it hold up. Say "quick" if you want the short version instead.
+>
 > You usually do not need to know more. Just chat normally for a quick reply; mention "draft a one-page memo" or "produce a clean summary" when you want a polished document.
 
 ## Topic: tasks

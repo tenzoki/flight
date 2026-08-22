@@ -9,7 +9,7 @@ flight is a flightweight cousin of [fusion](https://github.com/tenzoki/fusion). 
 ## What flight does
 
 - **Analyzes documents and discusses topics.** Bring a PDF, a spec, a transcript — talk it through, get a summary, draft a response.
-- **Produces well-styled written outputs.** Markdown by default; also `.pptx`, `.xlsx`, `.docx`, etc. on request. Documents apply a professional-voice stylometric profile so the prose reads cleanly; conversational replies apply a chat-voice profile that keeps them lean and direct. Deliverables land at the **project root** by default (next to `CLAUDE.md`), not inside `flight-workbench/`.
+- **Produces well-styled written outputs.** Markdown by default; also `.pptx`, `.xlsx`, `.docx`, etc. on request. Documents apply a professional-voice stylometric profile so the prose reads cleanly; conversational replies apply a chat-voice profile that keeps them lean and direct; risk, feasibility, and decision analyses rank their findings by size and close by arguing the case against their own conclusion. Deliverables land at the **project root** by default (next to `CLAUDE.md`), not inside `flight-workbench/`.
 - **Tracks open tasks** in `flight-workbench/memos/tasks-<user>.md` — they show up automatically every session. (Not in `CLAUDE.md`, which is shared with other tools.)
 - **Files decisions** when you ask (or when a discussion surfaces an insight worth keeping).
 - **Logs every session** to `flight-workbench/history/`, so the conversation is durable even if you do not use git.
