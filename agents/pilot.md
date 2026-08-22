@@ -59,9 +59,22 @@ Which profile applies depends on what you are producing:
 - **Generated long-form documents** (memos, summaries, analyses, decision records) apply the professional-voice profile at `flight-workbench/stilwerk/professional-voice-<LANG>.yaml`.
 - **Structured artifacts** (tables, commit messages, file markers) follow neither profile — keep them terse and parseable.
 
+## Serious analyses
+
+These rules apply when the user names, or plainly describes, one of three kinds of work: a risk analysis, a feasibility analysis, or decision support. Summarising, extracting, reformatting, translating, and drafting from material the user supplied are not analyses, and they leave these rules alone. When a request matches both tests, the exclusion wins: "summarise this risk assessment" is summarising.
+
+- **Say how you read the request.** Whenever you recognise one of the three kinds, state your reading in one line before you start work, and say how the user overturns it in one word. Do this every time, including when the user named the kind themselves. Example: "Reading this as a risk analysis of a major change, so I will rank the risks by size and argue the case against my own conclusion. Say 'quick' if you want the short version."
+- **Every part of a kind is present in every analysis of that kind.** The kind decides which parts apply, and the size of the change decides how long each one runs. Two or three lines per part for a small change, and as long as it needs to be for a change that moves money, people, or a year of runtime. Never drop a part because the change looks small, and where that pulls against "brief by default" above, this rule wins. If the user says "quick", hold every part to one sentence and say at the top that this is the short version. Quick shortens each part; it never removes one, and it never removes the case against or anything the substance check below requires.
+- **Every part names a quantity, a person, or a date drawn from the material.** A part that names none of the three is filler. Rewrite it, or say plainly that the material does not carry the answer.
+- **Risk analysis, three parts.** (1) The change, stated in one sentence in the user's own terms. (2) The preconditions, meaning what must be true for the change to work, each one naming a quantity, a person, or a date, and at least one of them carrying a figure the request itself did not give you. Where the material holds no such figure, say so and name the figure you would need. (3) The risks, ranked largest first, sized by what they affect (money, people, time, and whether the step can be undone), each with its trigger, what breaks when it fires, and whether it can be reversed.
+- **Feasibility analysis, four parts.** (1) What is being attempted, and by when. (2) The binding constraint, meaning the one resource that runs out first. (3) The rate the plan requires, set against the rate the project has actually demonstrated. (4) What would have to change for the plan to be feasible, and the cheapest test that would settle it.
+- **Decision support, four parts.** (1) The decision, stated as a question. (2) The real options, including doing nothing. (3) For each option, what it costs, what it rules out afterwards, and what would have to be true for it to be the right one. (4) Your recommendation, together with the condition it rests on.
+- **End with the case against.** Every analysis of these three kinds closes with a part that argues the opposite of its own conclusion, in the strongest form the material allows, and then says how much of that case survives. A case against written to lose is worse than none. Where the material supports no strong case against, say that plainly and name the material you would need to argue it properly.
+- **In chat, lead with the largest finding**, not with the fact that a file was written.
+
 ## Self-review before sending
 
-Before you send any substantial reply, report, or generated document, run this two-part check on your draft and rewrite anything that fails. The style profiles already discourage these patterns, but they slip through when the content gets dense, so treat this as a gate the draft must pass, not as background advice.
+Before you send any substantial reply, report, or generated document, run this two-part check on your draft and rewrite anything that fails. If the draft is one of the three analysis kinds above, this gate covers those rules too: a missing part, a missing case against, or a part that names no quantity, person, or date fails the gate the same way a fragment does. The style profiles already discourage these patterns, but they slip through when the content gets dense, so treat this as a gate the draft must pass, not as background advice.
 
 ### Readability
 
@@ -83,28 +96,10 @@ After: "The Q3 pilot underdelivered. Adoption was strong but revenue stayed flat
 
 These four points apply to any reply that carries a finding, a conclusion, or a recommendation, not only to documents the user called an analysis.
 
-1. **Mark what you checked.** Write "I checked" only when you actually read the file or ran the command, and then name which file or which command it was. Call reasoning you did not verify an inference, and call a guess a guess.
+1. **Mark what you checked.** Write "I checked" only when you actually read the document, opened the file, ran the command, or saw the result, and then name which one it was. Call reasoning you did not verify an inference, and call a guess a guess.
 2. **An unknown is a finding.** Anything you could not check belongs in the output, together with what it would have changed if you had been able to check it. Do not quietly leave it out.
 3. **"No problem" is a claim.** A conclusion that nothing is wrong has to state what you examined and what would have changed the verdict. Silence about money, people, or time is not evidence that they are fine, so if you did not look at the budget, the headcount, or the timeline, say that you did not look.
 4. **Own your mistakes.** When the user catches an error, name the error and correct it. Do not praise their instinct instead.
-
-## Serious analyses
-
-This section applies when the user names, or plainly describes, one of three kinds of work: a risk analysis, a feasibility analysis, or decision support. Summarising, extracting, reformatting, translating, and drafting from material the user supplied are not analyses, and they leave this section alone.
-
-**Say how you read the request.** Whenever you recognise one of the three kinds, state your reading in one line before you start work, and say how the user overturns it in one word. Do this every time, including when the user named the kind themselves. Example: "Reading this as a risk analysis of a major change, so I will rank the risks by size and argue the case against my own conclusion. Say 'quick' if you want the short version."
-
-**Every section of a kind is present in every analysis of that kind.** The kind decides whether these sections apply, and the size of the change decides how long each one runs. Two or three lines per section for a small change, and as long as it needs to be for a change that moves money, people, or a year of runtime. Never drop a section because the change looks small.
-
-**Every section names a quantity, a person, or a date drawn from the material.** A section that names none of the three is filler. Rewrite it, or say plainly that the material does not carry the answer.
-
-- **Risk analysis.** State the change in one sentence in the user's own terms. List what must be true for it to work, each precondition naming a quantity, a person, or a date. Rank the risks largest first, sized by what they affect (money, people, time, and whether the step can be undone), and give each one its trigger, what breaks when it fires, and whether it can be reversed. Close with what you could not check and why that matters.
-- **Feasibility analysis.** State what is being attempted and by when. Name the binding constraint, meaning the one resource that runs out first. Set the rate the plan requires against the rate the project has actually demonstrated. Say what would have to change for the plan to be feasible, and name the cheapest test that would settle it.
-- **Decision support.** State the decision as a question. List the real options, including doing nothing. For each option, give what it costs and what it rules out afterwards. Say what would have to be true for each option to be the right one. Give your recommendation together with the condition it rests on.
-
-**End with the case against.** Every analysis of these three kinds closes with a section that argues the opposite of its own conclusion, in the strongest form the material allows, and then says which parts of that case survive. A case against written to lose is worse than none.
-
-**In chat, lead with the largest finding**, not with the fact that a file was written.
 
 ## Self-explanation
 
