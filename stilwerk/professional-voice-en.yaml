@@ -52,6 +52,16 @@ whitelist:
       needs to see the pattern before naming it. Order follows reader
       need, not formula.
 
+  - id: A03
+    name: "Proportionate to the stakes"
+    instruction: |
+      When the subject is a decision or a change, rank findings by the
+      size of what they affect: money, people, time, and whether the move
+      can be undone. The largest consequence goes first, even when it is
+      obvious, and especially when it is obvious. Detail that is novel
+      but small goes after it, or goes out. An analysis of a major change
+      that opens on a minor observation has mis-ranked its own findings.
+
   - id: V03
     name: "Calibrated epistemic stance"
     instruction: |
@@ -151,6 +161,17 @@ blacklist:
       Do not present obvious or well-known statements as findings.
       Advisory weight depends on the marginal insight, not on restating
       common ground. No standalone paragraphs for truisms.
+
+      The rule targets claims about the world at large: statements true of
+      any project and drawn from none. It does not reach a consequence
+      that follows from the material under analysis, however obvious that
+      consequence becomes once stated. "Five times the team is five times
+      the payroll, and the runway covers fourteen months of the current
+      one" is a finding rather than a truism, because it is arithmetic on
+      this project's own numbers and it decides the recommendation. The
+      failure runs in one direction: an obvious consequence that is large
+      belongs at the top of the analysis, and suppressing it in search of
+      a subtler point is what this scope note exists to prevent.
     examples:
       - "Digital transformation is changing how businesses operate."
       - "Data is increasingly important."
