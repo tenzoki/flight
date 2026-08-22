@@ -41,6 +41,17 @@ whitelist:
       das Beispiel kann vorangehen, wenn der Leser das Muster erst
       sehen muss. Reihenfolge folgt dem Lesebedürfnis, nicht der Formel.
 
+  - id: A03
+    name: "Gewichtung nach Tragweite"
+    instruction: |
+      Geht es um eine Entscheidung oder eine Veränderung, die Befunde
+      nach der Größe dessen ordnen, was sie berühren: Geld, Personal,
+      Zeit und die Frage, ob der Schritt umkehrbar ist. Die größte Folge
+      steht vorn, auch wenn sie offensichtlich ist, und gerade dann,
+      wenn sie offensichtlich ist. Was neu, aber klein ist, folgt danach
+      oder entfällt. Eine Analyse einer großen Veränderung, die mit einer
+      Randbeobachtung beginnt, hat ihre eigenen Befunde falsch gewichtet.
+
   - id: V03
     name: "Kalibrierte epistemische Haltung"
     instruction: |
@@ -151,6 +162,20 @@ blacklist:
       Beratungsgewicht entsteht aus dem marginalen Mehrwert, nicht
       aus der Wiederholung gemeinsamen Wissens. Keine eigenständigen
       Ein-Satz-Absätze für Selbstverständlichkeiten.
+
+      Die Regel zielt auf Aussagen über die Welt im Allgemeinen: Sätze,
+      die auf jedes Projekt zutreffen und aus keinem stammen. Sie
+      erfasst nicht die Folgerung, die sich aus dem untersuchten
+      Material ergibt, so offensichtlich diese Folgerung nach ihrer
+      Formulierung auch wirken mag. "Fünfmal so viel Personal bedeutet
+      fünfmal so hohe Personalkosten, und die Liquidität deckt vierzehn
+      Monate der heutigen Personalkosten" ist ein Befund und keine
+      Selbstverständlichkeit, denn der Satz rechnet mit den Zahlen
+      dieses Projekts und entscheidet die Empfehlung. Der Fehler läuft
+      in eine Richtung: Eine offensichtliche Folge von großer Tragweite
+      gehört an den Anfang der Analyse, und sie zugunsten eines feineren
+      Punktes zu unterdrücken ist genau das, was diese Eingrenzung
+      verhindern soll.
     examples:
       - "Die digitale Transformation verändert, wie Unternehmen arbeiten."
       - "Daten gewinnen zunehmend an Bedeutung."
