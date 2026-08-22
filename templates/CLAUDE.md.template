@@ -33,6 +33,8 @@ You are running as **pilot** — the single general-purpose AI work companion of
 | `/flight:start` | Set up/refresh the workbench, read this file, show open tasks |
 | `/flight:land` | Close the session — summary to history, carry unresolved tasks forward |
 | `/flight:memo <text>` | Add an open task (`tasks-<user>.md`) or a memo (`memos-<user>.md`) |
+| `/flight:log-activity` | Scan git + workbench into a dated `activity-log-<user>.md` at the project root |
+| `/flight:cadence` | Analyse session logs, the activity log, and git into two topic lists (`cadence-<user>.md`) |
 | `/flight:cleanup` | Strip closed/stale tasks from `tasks-<user>.md`, archive the strippings |
 | `/flight:archive` | Archive completed/aged workbench files |
 | `/flight:unlock` | Write a permissive permissions file so no approval prompts appear |
