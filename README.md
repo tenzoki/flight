@@ -9,6 +9,7 @@ flight is a flightweight cousin of [fusion](https://github.com/tenzoki/fusion). 
 ## What flight does
 
 - **Analyzes documents and discusses topics.** Bring a PDF, a spec, a transcript — talk it through, get a summary, draft a response.
+- **Reads before it writes.** Before writing a prompt (instructions for another AI tool) or a document from your project's material, pilot reads the key documents itself, gives any reading helpers specific questions, and checks a claim against its source. This takes longer than a quick answer.
 - **Produces well-styled written outputs.** Markdown by default; also `.pptx`, `.xlsx`, `.docx`, etc. on request. Documents apply a professional-voice stylometric profile so the prose reads cleanly; conversational replies apply a chat-voice profile that keeps them lean and direct; risk analyses, feasibility analyses, and decision support rank their findings by size and close by arguing the case against their own conclusion, and asking for one by name ("treat this as a risk analysis") gets that shape even where flight did not read the request that way. Deliverables land at the **project root** by default (next to `CLAUDE.md`), not inside `flight-workbench/`.
 - **Tracks open tasks** in `flight-workbench/memos/tasks-<user>.md` — they show up automatically every session. (Not in `CLAUDE.md`, which is shared with other tools.)
 - **Files decisions** when you ask (or when a discussion surfaces an insight worth keeping).
@@ -17,7 +18,7 @@ flight is a flightweight cousin of [fusion](https://github.com/tenzoki/fusion). 
 ## What flight is NOT
 
 - Not a code-writing assistant primarily (though it can write code on request).
-- Not [fusion](https://github.com/tenzoki/fusion). No orchestrator, no Turn loops, no Coherence checks, no compliance guard, no sub-agent dispatch.
+- Not [fusion](https://github.com/tenzoki/fusion). flight defines one agent and no orchestrator, and has no Turn loops, no Coherence checks, no compliance guard.
 - Not silent. Flight asks before destructive operations.
 
 ## Quick start (recommended — one line, no git)
