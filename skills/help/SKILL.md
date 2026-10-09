@@ -94,6 +94,7 @@ If the user passed a topic argument (`/flight:help workflow`), jump to that sect
 >     ├── decisions/                   ← important choices you asked me to track
 >     ├── memos/                       ← your open tasks (tasks-<user>.md) + memos (memos-<user>.md), via /flight:memo only
 >     ├── archive/                     ← /flight:archive and /flight:cleanup move stuff here
+>     ├── extracts/                    ← notes reading helpers took from your material (kept until you say otherwise)
 >     ├── stilwerk/                    ← style profiles (professional-voice for documents, chat-voice for chat; read-only)
 >     └── .flight-setup                ← marker showing when setup ran
 > ```

@@ -1,5 +1,5 @@
 ---
-description: Initialize the flight workbench in the current project directory. Creates ./flight-workbench/ with subfolders (history, decisions, memos, archive, stilwerk), copies the stylometric profiles, initializes CLAUDE.md (flight's conventions/instruction file) from the template if missing, then reports any open tasks from flight-workbench/memos/tasks-<user>.md. Run once per project, or re-run any time to refresh the stilwerk profiles and verify the layout. Idempotent — never overwrites user content.
+description: Initialize the flight workbench in the current project directory. Creates ./flight-workbench/ with subfolders (history, decisions, memos, archive, extracts, stilwerk), copies the stylometric profiles, initializes CLAUDE.md (flight's conventions/instruction file) from the template if missing, then reports any open tasks from flight-workbench/memos/tasks-<user>.md. Run once per project, or re-run any time to refresh the stilwerk profiles and verify the layout. Idempotent — never overwrites user content.
 allowed-tools: [Read, Write, Bash, Edit, AskUserQuestion]
 ---
 
@@ -28,7 +28,7 @@ If you cannot determine the plugin root, fall back to: try `$FLIGHT_PLUGIN_ROOT/
 ## Step 2 — Create the workbench
 
 ```bash
-mkdir -p ./flight-workbench/history ./flight-workbench/decisions ./flight-workbench/memos ./flight-workbench/archive ./flight-workbench/stilwerk
+mkdir -p ./flight-workbench/history ./flight-workbench/decisions ./flight-workbench/memos ./flight-workbench/archive ./flight-workbench/extracts ./flight-workbench/stilwerk
 ```
 
 `mkdir -p` is safe to rerun — existing directories are untouched, missing ones are added.
