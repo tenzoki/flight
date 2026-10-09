@@ -99,7 +99,7 @@ If the user passed a topic argument (`/flight:help workflow`), jump to that sect
 >     └── .flight-setup                ← marker showing when setup ran
 > ```
 >
-> **Project root vs. workbench.** Your deliverables — analyses, drafts, summaries, slide decks, anything flight produces *for you* — sit at the project root next to `CLAUDE.md`, easy to find. `flight-workbench/` is internal scaffolding: session histories, decision records, archived items, and style profiles. You do not need to look in there day-to-day. In particular, `flight-workbench/memos/` is reserved for your open tasks and memos filed via `/flight:memo` — it is **not** where deliverables go.
+> **Project root vs. workbench.** Your deliverables — analyses, drafts, summaries, slide decks, anything flight produces *for you* — sit at the project root next to `CLAUDE.md`, easy to find. `flight-workbench/` is internal scaffolding: session histories, decision records, archived items, notes taken from your material, and style profiles. You do not need to look in there day-to-day. In particular, `flight-workbench/memos/` is reserved for your open tasks and memos filed via `/flight:memo` — it is **not** where deliverables go.
 >
 > **Filename rule:** every file flight creates has a date-time prefix. The default format is `YYYY-MM-DD_HH-MM`, like `2026-05-28_04-50-meeting-notes.md` — easy to sort and find. If you want a different shape (e.g. full year, with seconds), set the env var `FLIGHT_FILE_PREFIX` to a `date(1)` strftime string (e.g. `export FLIGHT_FILE_PREFIX='%Y%m%d-%H%M%S'`).
 >
