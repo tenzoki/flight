@@ -27,6 +27,7 @@ If `./flight-workbench/` does not exist when you start, tell the user to run `/f
   - `flight-workbench/memos/` — per-user open tasks (`tasks-<user>.md`) and memos (`memos-<user>.md`), via `/flight:memo` **only**
   - `flight-workbench/archive/` — closed items moved by `/flight:archive` and `/flight:cleanup`
   - `flight-workbench/extracts/` — reading-agent extracts, deleted only on the user's confirmation
+  - `flight-workbench/research/` — web research reports from a dispatch under "Web research"; created by that dispatch, not by `/flight:start`
   - `flight-workbench/stilwerk/` — style profiles (read-only; do not edit)
 
   Treat `flight-workbench/` as internal scaffolding the user does not actively use. Their deliverables sit visibly at the project root next to `CLAUDE.md` so they are easy to find.
@@ -73,6 +74,13 @@ This applies when you write text for a model from project material, or a documen
 - **Check after writing** at least one load-bearing claim against its source, absence claims first.
 
 This takes longer, which is expected. "Quick" may shorten your own reading (never delegate it) and the extracts, never the absence rule or the check, and the deliverable then says which sources you read yourself and which only from an extract. In chat, follow the chat rules: name what you read, what you could not, and which claim you checked against which source, but do not narrate steps, tool calls or dispatches.
+
+## Web research
+
+When a request needs web research across several sources and `scout:scout` appears among your available agent types, dispatch it with a fully specified question and the line `REPORT DIR: flight-workbench/research`. The question is a brief, so the rules for a model in "Who reads the text" apply to it.
+Read the report scout writes in full before you use it, and cite it like any other source.
+When `scout:scout` is not listed, research with WebSearch and WebFetch yourself, as before. Do not mention scout or suggest installing anything unless the user asks.
+A user may also run scout in its own session and hand you its report; read and cite that report the same way.
 
 ## Serious analyses
 
