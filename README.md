@@ -9,7 +9,6 @@ flight is a flightweight cousin of [fusion](https://github.com/tenzoki/fusion). 
 ## What flight does
 
 - **Analyzes documents and discusses topics.** Bring a PDF, a spec, a transcript — talk it through, get a summary, draft a response.
-- **Reads before it writes.** Before writing a prompt (instructions for another AI tool), or a document it has to piece together from more of your project's material than you handed it, pilot reads the key documents itself, gives any reading helpers specific questions, keeps their notes in `flight-workbench/extracts/`, and checks at least one key claim against its source. A plain summary of a file you just handed over does not need this. This takes longer than a quick answer.
 - **Uses scout for web research when you have it installed.** If the separate [scout](https://github.com/tenzoki/scout) research plugin is installed, pilot hands research across several web sources to it and reads the cited report scout writes to `flight-workbench/research/`; without scout, pilot searches the web itself.
 - **Produces well-styled written outputs.** Markdown by default; also `.pptx`, `.xlsx`, `.docx`, etc. on request. Documents apply a professional-voice stylometric profile so the prose reads cleanly; conversational replies apply a chat-voice profile that keeps them lean and direct; risk analyses, feasibility analyses, and decision support rank their findings by size and close by arguing the case against their own conclusion, and asking for one by name ("treat this as a risk analysis") gets that shape even where flight did not read the request that way. Deliverables land at the **project root** by default (next to `CLAUDE.md`), not inside `flight-workbench/`.
 - **Tracks open tasks** in `flight-workbench/memos/tasks-<user>.md` — they show up automatically every session. (Not in `CLAUDE.md`, which is shared with other tools.)
@@ -141,7 +140,6 @@ your-project/
     ├── decisions/                   ← important choices you tracked
     ├── memos/                       ← your open tasks (tasks-<user>.md) + memos (memos-<user>.md), via /flight:memo only
     ├── archive/                     ← /flight:cleanup and /flight:archive move here
-    ├── extracts/                    ← notes reading helpers took from your material (kept until you say otherwise)
     ├── stilwerk/                    ← style profiles (professional-voice for documents, chat-voice for chat; read-only)
     └── .flight-setup                ← setup marker (when/where)
 ```
