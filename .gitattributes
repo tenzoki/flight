@@ -1,0 +1,2 @@
+# fusion: the orchestrator event log is append-only and two checkouts both append to it.
+fusion-workbench/orchestrator-events.jsonl merge=union
