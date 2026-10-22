@@ -79,12 +79,12 @@ flight          # starts Claude Code with the pilot agent loaded
 
 `/flight:start` never overwrites an existing `CLAUDE.md`, so updating flight does not change one that is already there. v0.13.0 took back a reading rule that v0.11.0 and v0.12.0 wrote into the flight section of `CLAUDE.md`. If you ran `/flight:start` in a project under one of those versions, fix that project's `CLAUDE.md` in one of two ways:
 
-- **Simplest:** replace the section "How flight behaves in this project (for Claude)" with the same section from `templates/CLAUDE.md.template` in v0.13.0 (`flight --where` shows where that file is).
-- **By hand:** make these four changes in that section.
-  1. Change "Users, often non-technical, shape your tone, not your thoroughness." back to "The user is typically non-technical."
-  2. In the Workbench bullet, delete "reading extracts (`extracts/`),".
-  3. In the Style bullet, delete "and to text for a model, where completeness overrides profile glosses and cuts of required content", change "any substantial reply, document, prompt or brief" to "any substantial reply or document", and delete "in text for people".
-  4. Delete the whole `**Reading before writing:**` bullet.
+- **Simplest:** replace the section "How flight behaves in this project (for Claude)" with the same section from the current template, [`templates/CLAUDE.md.template`](https://github.com/tenzoki/flight/blob/main/templates/CLAUDE.md.template) on GitHub. With the one-line installer, the same file is also in your install folder (`flight --where` shows where).
+- **By hand:** these steps match the v0.12.0 wording. If your `CLAUDE.md` does not contain each quoted text exactly, use the simplest way above instead. Each text to delete starts with a space; delete that space too.
+  1. Change "Users, often non-technical, shape your tone, not your thoroughness." to "The user is typically non-technical."
+  2. In the Workbench bullet, delete " reading extracts (`extracts/`),".
+  3. In the Style bullet, delete " and to text for a model, where completeness overrides profile glosses and cuts of required content", change "any substantial reply, document, prompt or brief" to "any substantial reply or document", and delete " in text for people".
+  4. Delete the whole line that starts with "- **Reading before writing:**".
 
 ### Where flight installs
 
